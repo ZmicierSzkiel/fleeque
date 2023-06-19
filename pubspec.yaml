@@ -1,0 +1,45 @@
+name: fleeque
+description: Application for Influencers and to Influencers.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.3
+  bloc: ^8.1.2
+  carousel_slider: ^4.2.1
+  dots_indicator: ^2.1.1
+  flutter_native_splash: ^2.2.19
+  shared_preferences: ^2.1.1
+  equatable: ^2.0.5
+  get_it: ^7.6.0
+  firebase_core: ^2.13.1
+  cloud_firestore: ^4.8.0
+  firebase_auth: ^4.6.2
+  email_validator: ^2.1.17
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/images/logo_min.png
+  android_12:
+    image: assets/images/logo_min.png
+  android: true
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-VariableFont_wght.ttf
+  assets: 
+    - assets/images/

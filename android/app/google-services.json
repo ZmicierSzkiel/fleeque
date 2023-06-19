@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "440376019098",
+    "project_id": "fleeque-660f3",
+    "storage_bucket": "fleeque-660f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440376019098:android:6dced6cdcb837a1828f723",
+        "android_client_info": {
+          "package_name": "com.example.fleeque"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGMuQYQp5ViafdSL0CvHZPGy3_DmmwZQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
