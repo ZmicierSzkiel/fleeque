@@ -1,26 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'influencers_bloc.dart';
 
-enum FilterOption {
-  value,
-  country,
-}
-
 class InfluencersState {
-  final String? filterSelectedValue;
-  final String? filterByCountry;
+  final String? priceFilter;
+  final String? dateFilter;
+  final String? countryFilter;
+  final String? popularityFilter;
 
   const InfluencersState({
-    this.filterSelectedValue,
-    this.filterByCountry,
+    this.priceFilter,
+    this.dateFilter,
+    this.countryFilter,
+    this.popularityFilter,
   });
 
   InfluencersState copyWith({
-    String? filterSelectedValue,
-    String? filterByCountry,
+    String? priceFilter,
+    String? dateFilter,
+    String? countryFilter,
+    String? popularityFilter,
   }) {
     return InfluencersState(
-      filterSelectedValue: filterSelectedValue ?? this.filterSelectedValue,
-      filterByCountry: filterByCountry ?? this.filterByCountry,
+      priceFilter: priceFilter ?? this.priceFilter,
+      dateFilter: dateFilter ?? this.dateFilter,
+      countryFilter: countryFilter ?? this.countryFilter,
+      popularityFilter: popularityFilter ?? this.popularityFilter,
     );
   }
 }

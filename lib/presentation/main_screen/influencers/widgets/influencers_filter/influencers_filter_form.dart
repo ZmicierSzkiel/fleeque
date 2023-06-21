@@ -1,9 +1,11 @@
 import 'package:fleeque/domain/entities/influencer.dart';
+import 'package:fleeque/presentation/main_screen/influencers/bloc/influencers_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
 import 'package:fleeque/core_ui/secondary_app_bar.dart';
 import 'package:fleeque/presentation/main_screen/influencers/widgets/influencers_filter/influencer_dropdown_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InfluencersFilterForm extends StatelessWidget {
   final List<Influencer> influencers;
@@ -34,83 +36,112 @@ class InfluencersFilterForm extends StatelessWidget {
     final List<String> countryRange =
         influencers.map((influencer) => influencer.country).toList();
 
-    return Scaffold(
-      appBar: const SecondaryAppBar(
-        title: '',
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.textPrimaryColor,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-          ),
-          child: Column(
-            children: [
-              Container(
-                alignment: Alignment.centerLeft,
+    return BlocProvider(
+      create: (context) => InfluencersBloc(),
+      child: BlocBuilder<InfluencersBloc, InfluencersState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: const SecondaryAppBar(
+              title: '',
+            ),
+            body: Container(
+              decoration: const BoxDecoration(
+                color: AppColors.textPrimaryColor,
+              ),
+              child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 30.0,
+                  horizontal: 20.0,
                 ),
-                child: const Text(
-                  'Sort by',
-                  style: AppFonts.largeFontPrefsWhite,
-                ),
-              ),
-              InfluencerDropdownButton(
-                valueList: priceRange,
-                labelText: 'Price',
-              ),
-              InfluencerDropdownButton(
-                valueList: dateRange,
-                labelText: 'Time',
-              ),
-              InfluencerDropdownButton(
-                valueList: popularityRange,
-                labelText: 'Popularity',
-              ),
-              InfluencerDropdownButton(
-                valueList: countryRange,
-                labelText: 'Country',
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 30.0,
-                ),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        const MaterialStatePropertyAll(AppColors.primaryColor),
-                    minimumSize: const MaterialStatePropertyAll(
-                      Size(
-                        double.infinity,
-                        0,
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 30.0,
+                      ),
+                      child: const Text(
+                        'Sort by',
+                        style: AppFonts.largeFontPrefsWhite,
                       ),
                     ),
-                    overlayColor: MaterialStatePropertyAll(
-                      AppColors.textPrimaryColor.withOpacity(0.1),
+                    InfluencerDropdownButton(
+                      valueList: priceRange,
+                      filterSelectedValue: state.priceFilter,
+                      labelText: 'Price',
+                      onChanged: (value) {
+                        BlocProvider.of<InfluencersBloc>(context)
+                            .add(PriceFilterEvent(value!));
+                      },
                     ),
-                    shape: MaterialStatePropertyAll(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
+                    InfluencerDropdownButton(
+                      valueList: dateRange,
+                      filterSelectedValue: state.dateFilter,
+                      labelText: 'Time',
+                      onChanged: (value) {
+                        BlocProvider.of<InfluencersBloc>(context)
+                            .add(DateFilterEvent(value!));
+                      },
+                    ),
+                    InfluencerDropdownButton(
+                      filterSelectedValue: state.popularityFilter,
+                      valueList: popularityRange,
+                      labelText: 'Popularity',
+                      onChanged: (value) {
+                        BlocProvider.of<InfluencersBloc>(context)
+                            .add(PopularityFilterEvent(value!));
+                      },
+                    ),
+                    InfluencerDropdownButton(
+                      filterSelectedValue: state.countryFilter,
+                      valueList: countryRange,
+                      labelText: 'Country',
+                      onChanged: (value) {
+                        BlocProvider.of<InfluencersBloc>(context)
+                            .add(CountryFilterEvent(value!));
+                      },
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 30.0,
+                      ),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: const MaterialStatePropertyAll(
+                              AppColors.primaryColor),
+                          minimumSize: const MaterialStatePropertyAll(
+                            Size(
+                              double.infinity,
+                              0,
+                            ),
+                          ),
+                          overlayColor: MaterialStatePropertyAll(
+                            AppColors.textPrimaryColor.withOpacity(0.1),
+                          ),
+                          shape: MaterialStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          child: Text(
+                            'Filter'.toUpperCase(),
+                            style: AppFonts.largeFontPrefsBlack,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Text(
-                      'Filter'.toUpperCase(),
-                      style: AppFonts.largeFontPrefsBlack,
-                    ),
-                  ),
-                  onPressed: () {},
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

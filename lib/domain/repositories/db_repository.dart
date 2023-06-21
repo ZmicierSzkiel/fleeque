@@ -1,6 +1,7 @@
 import 'package:fleeque/domain/entities/influencer.dart';
 
 abstract class DbRepository {
-  Future<List<Influencer>> getInfluencersList();
-  Future<List<Influencer>> getFilteredInfluencers();
+  Future<void> getInfluencersList();
+  Stream<List<Influencer>> observe();
+  // Future<List<Influencer>> updateInfluencersList();
 }

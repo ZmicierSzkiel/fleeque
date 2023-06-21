@@ -7,18 +7,26 @@ import 'package:fleeque/domain/repositories/db_repository.dart';
 
 class DbRepositoryImpl implements DbRepository {
   final FirebaseDbProvider _firebaseDbProvider;
+  final StreamController<List<InfluencerMapper>> _streamController =
+      StreamController<List<InfluencerMapper>>.broadcast();
 
   DbRepositoryImpl({
     required FirebaseDbProvider firebaseDbProvider,
   }) : _firebaseDbProvider = firebaseDbProvider;
 
   @override
-  Future<List<InfluencerMapper>> getInfluencersList() {
-    return _firebaseDbProvider.getInfluencersListFromDB();
+  Future<void> getInfluencersList() async {
+    List<InfluencerMapper> influencersList =
+        await _firebaseDbProvider.getInfluencersListFromDB();
+    _streamController.add(influencersList);
   }
 
   @override
-  Future<List<InfluencerMapper>> getFilteredInfluencers() {
-    return _firebaseDbProvider.getFilteredInfluencersFromDB();
+  Stream<List<InfluencerMapper>> observe() {
+    return _streamController.stream;
+  }
+
+  void dispose() {
+    _streamController.close();
   }
 }

@@ -17,14 +17,4 @@ class FirebaseDbProvider {
       },
     ).toList();
   }
-
-  Future<List<InfluencerMapper>> getFilteredInfluencersFromDB() {
-    return getInfluencersListFromDB();
-  }
-
-  List<InfluencerMapper> applyFiltration(
-    List<InfluencerMapper> influencers,
-  ) {
-    return influencers;
-  }
 }

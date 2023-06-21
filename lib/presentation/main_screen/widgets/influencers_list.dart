@@ -22,7 +22,9 @@ class InfluencersList extends StatelessWidget {
       itemCount: length,
       itemBuilder: (context, index) {
         final itemIndex = index % influencers.length;
-        return InfluencerListTile(influencer: influencers[itemIndex]);
+        return InfluencerListTile(
+          influencer: influencers[itemIndex],
+        );
       },
     );
   }

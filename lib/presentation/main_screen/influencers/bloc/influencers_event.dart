@@ -4,14 +4,26 @@ abstract class InfluencersEvent {
   const InfluencersEvent();
 }
 
-class FilterValueChangedEvent extends InfluencersEvent {
-  final String? value;
+class CountryFilterEvent extends InfluencersEvent {
+  final String country;
 
-  FilterValueChangedEvent(this.value);
+  CountryFilterEvent(this.country);
 }
 
-class FilterByCountryEvent extends InfluencersEvent {
-  final String? country;
+class DateFilterEvent extends InfluencersEvent {
+  final String date;
 
-  FilterByCountryEvent(this.country);
+  DateFilterEvent(this.date);
+}
+
+class PriceFilterEvent extends InfluencersEvent {
+  final String price;
+
+  PriceFilterEvent(this.price);
+}
+
+class PopularityFilterEvent extends InfluencersEvent {
+  final String popularity;
+
+  PopularityFilterEvent(this.popularity);
 }
