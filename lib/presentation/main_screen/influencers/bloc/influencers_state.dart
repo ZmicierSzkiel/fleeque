@@ -1,30 +1,43 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'influencers_bloc.dart';
 
+enum FilteringStatus {
+  loading,
+  filteringComplete,
+  error,
+}
+
 class InfluencersState {
-  final String? priceFilter;
-  final String? dateFilter;
-  final String? countryFilter;
-  final String? popularityFilter;
+  final String priceFilter;
+  final String timeFilter;
+  final String countryFilter;
+  final String followersFilter;
+  final FilteringStatus status;
+  final String message;
 
   const InfluencersState({
-    this.priceFilter,
-    this.dateFilter,
-    this.countryFilter,
-    this.popularityFilter,
+    required this.priceFilter,
+    required this.timeFilter,
+    required this.countryFilter,
+    required this.followersFilter,
+    this.status = FilteringStatus.loading,
+    this.message = '',
   });
 
   InfluencersState copyWith({
     String? priceFilter,
-    String? dateFilter,
+    String? timeFilter,
     String? countryFilter,
-    String? popularityFilter,
+    String? followersFilter,
+    FilteringStatus? status,
+    String? message,
   }) {
     return InfluencersState(
       priceFilter: priceFilter ?? this.priceFilter,
-      dateFilter: dateFilter ?? this.dateFilter,
+      timeFilter: timeFilter ?? this.timeFilter,
       countryFilter: countryFilter ?? this.countryFilter,
-      popularityFilter: popularityFilter ?? this.popularityFilter,
+      followersFilter: followersFilter ?? this.followersFilter,
+      status: status ?? this.status,
+      message: message ?? this.message,
     );
   }
 }

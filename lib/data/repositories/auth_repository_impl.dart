@@ -17,14 +17,20 @@ class AuthRepositoryImpl implements AuthRepository {
         _preferencesProvider = preferencesProvider;
 
   @override
-  Future<void> registerUser(RegisterUserRequest userInfo) async {
+  Future<void> registerUser(
+    RegisterUserRequest userInfo,
+  ) async {
     final UserMapper signedUpUser = await _firebaseAuthProvider.signUpUser(
-        email: userInfo.email, password: userInfo.password);
+      email: userInfo.email,
+      password: userInfo.password,
+    );
     _preferencesProvider.saveUser(signedUpUser);
   }
 
   @override
-  Future<void> logInUser(LoginUserRequest userInfo) async {
+  Future<void> logInUser(
+    LoginUserRequest userInfo,
+  ) async {
     final UserMapper signedInUser = await _firebaseAuthProvider.signInUser(
       email: userInfo.email,
       password: userInfo.password,

@@ -10,10 +10,10 @@ class CountryFilterEvent extends InfluencersEvent {
   CountryFilterEvent(this.country);
 }
 
-class DateFilterEvent extends InfluencersEvent {
-  final String date;
+class TimeFilterEvent extends InfluencersEvent {
+  final String time;
 
-  DateFilterEvent(this.date);
+  TimeFilterEvent(this.time);
 }
 
 class PriceFilterEvent extends InfluencersEvent {
@@ -22,8 +22,10 @@ class PriceFilterEvent extends InfluencersEvent {
   PriceFilterEvent(this.price);
 }
 
-class PopularityFilterEvent extends InfluencersEvent {
-  final String popularity;
+class FollowersFilterEvent extends InfluencersEvent {
+  final String followers;
 
-  PopularityFilterEvent(this.popularity);
+  FollowersFilterEvent(this.followers);
 }
+
+class FilterDataEvent extends InfluencersEvent {}

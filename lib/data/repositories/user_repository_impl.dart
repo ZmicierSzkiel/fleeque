@@ -6,7 +6,9 @@ import 'package:fleeque/domain/repositories/user_repository.dart';
 class UserRepositoryImpl implements UserRepository {
   final SharedPreferencesProvider sharedPreferencesProvider;
 
-  UserRepositoryImpl({required this.sharedPreferencesProvider});
+  const UserRepositoryImpl({
+    required this.sharedPreferencesProvider,
+  });
 
   @override
   Future<bool?> isFirstLaunch() async {

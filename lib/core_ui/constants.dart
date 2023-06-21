@@ -5,8 +5,10 @@ const String appName = 'Fleeque';
 class AppColors {
   static const primaryColor = Colors.white;
   static const textPrimaryColor = Colors.black;
-  static final initialPageColor =
-      ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken);
+  static final initialPageColor = ColorFilter.mode(
+    Colors.black.withOpacity(0.3),
+    BlendMode.darken,
+  );
   static const linkColor = Color(0xFFDE412B);
 }
 

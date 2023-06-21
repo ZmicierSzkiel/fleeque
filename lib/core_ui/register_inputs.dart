@@ -41,7 +41,9 @@ class _RegistrationEmailInputState extends State<RegistrationEmailInput> {
           hintText: widget.hintText,
         ),
         onChanged: (value) => context.read<RegistrationBloc>().add(
-              RegistrationEmailChangedEvent(email: value),
+              RegistrationEmailChangedEvent(
+                email: value,
+              ),
             ),
       ),
     );
@@ -87,7 +89,9 @@ class _RegistrationPassInputState extends State<RegistrationPassInput> {
           hintText: widget.hintText,
         ),
         onChanged: (value) => context.read<RegistrationBloc>().add(
-              RegistrationPasswordChangedEvent(password: value),
+              RegistrationPasswordChangedEvent(
+                password: value,
+              ),
             ),
       ),
     );

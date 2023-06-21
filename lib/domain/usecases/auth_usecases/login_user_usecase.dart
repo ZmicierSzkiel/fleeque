@@ -6,7 +6,9 @@ import 'package:fleeque/domain/repositories/auth_repository.dart';
 class LoginUserUseCase implements UseCase<void, LoginUserRequest> {
   final AuthRepository repository;
 
-  LoginUserUseCase({required this.repository});
+  LoginUserUseCase({
+    required this.repository,
+  });
 
   @override
   Future<void> execute(LoginUserRequest params) {

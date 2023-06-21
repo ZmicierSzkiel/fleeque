@@ -6,7 +6,9 @@ import 'package:fleeque/domain/repositories/db_repository.dart';
 class ObserveUseCase implements StreamUseCase<List<Influencer>, NoParams> {
   final DbRepository repository;
 
-  ObserveUseCase({required this.repository});
+  ObserveUseCase({
+    required this.repository,
+  });
 
   @override
   Stream<List<Influencer>> execute(NoParams params) {

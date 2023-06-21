@@ -6,11 +6,16 @@ class FirebaseAuthProvider {
   static final fb_auth.FirebaseAuth _firebaseAuth =
       fb_auth.FirebaseAuth.instance;
 
-  Future<UserMapper> signUpUser(
-      {required String email, required String password}) async {
+  Future<UserMapper> signUpUser({
+    required String email,
+    required String password,
+  }) async {
     try {
-      fb_auth.UserCredential result = await _firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      fb_auth.UserCredential result =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       final userFb = result.user!;
       return UserMapper.fromFirebaseUser(userFb);
     } on fb_auth.FirebaseAuthException catch (e) {
@@ -24,18 +29,22 @@ class FirebaseAuthProvider {
     }
   }
 
-  Future<UserMapper> signInUser(
-      {required String email, required String password}) async {
+  Future<UserMapper> signInUser({
+    required String email,
+    required String password,
+  }) async {
     try {
-      fb_auth.UserCredential result = await _firebaseAuth
-          .signInWithEmailAndPassword(email: email, password: password);
+      fb_auth.UserCredential result =
+          await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       final userFb = result.user!;
       return UserMapper.fromFirebaseUser(userFb);
     } on fb_auth.FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         throw Exception('Invalid email or password.');
       } else {
-        // print(e.message);
         throw Exception('An error occurred during sign-in.');
       }
     }

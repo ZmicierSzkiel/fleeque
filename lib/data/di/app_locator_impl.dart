@@ -32,7 +32,7 @@ Future<void> setupLocator() async {
 
   getIt.registerLazySingleton<DbRepository>(
     () => DbRepositoryImpl(
-      firebaseDbProvider: getIt.get<FirebaseDbProvider>(),
+      dbProvider: getIt.get<FirebaseDbProvider>(),
     ),
   );
 }

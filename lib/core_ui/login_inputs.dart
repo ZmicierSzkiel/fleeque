@@ -40,7 +40,9 @@ class _EmailInputState extends State<EmailInput> {
           hintText: widget.hintText,
         ),
         onChanged: (value) => context.read<LoginBloc>().add(
-              LoginEmailChangedEvent(email: value),
+              LoginEmailChangedEvent(
+                email: value,
+              ),
             ),
       ),
     );
@@ -86,7 +88,9 @@ class _PassInputState extends State<PassInput> {
           hintText: widget.hintText,
         ),
         onChanged: (value) => context.read<LoginBloc>().add(
-              LoginPasswordChangedEvent(password: value),
+              LoginPasswordChangedEvent(
+                password: value,
+              ),
             ),
       ),
     );

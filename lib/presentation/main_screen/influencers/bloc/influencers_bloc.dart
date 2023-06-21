@@ -1,40 +1,55 @@
 import 'package:bloc/bloc.dart';
 
+import 'package:fleeque/domain/entities/filtered_influencer.dart';
+import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
+
 part 'influencers_event.dart';
 part 'influencers_state.dart';
 
 class InfluencersBloc extends Bloc<InfluencersEvent, InfluencersState> {
-  InfluencersBloc() : super(const InfluencersState()) {
+  final FilterInfluencersListUseCase _filterInfluencersListUseCase;
+  InfluencersBloc({
+    required FilterInfluencersListUseCase filterInfluencersListUseCase,
+  })  : _filterInfluencersListUseCase = filterInfluencersListUseCase,
+        super(
+          const InfluencersState(
+            countryFilter: '',
+            timeFilter: '',
+            followersFilter: '',
+            priceFilter: '',
+          ),
+        ) {
     on<PriceFilterEvent>(_handlePriceFilterEvent);
-    on<DateFilterEvent>(_handleDateFilterEvent);
-    on<PopularityFilterEvent>(_handlePopularityFilterEvent);
+    on<TimeFilterEvent>(_handleTimeFilterEvent);
+    on<FollowersFilterEvent>(_handleFollowersFilterEvent);
     on<CountryFilterEvent>(_handleCountryFilterEvent);
+    on<FilterDataEvent>(_handleFilterDataEvent);
   }
 
   void _handlePriceFilterEvent(
     PriceFilterEvent event,
     Emitter<InfluencersState> emit,
   ) {
-    final filteredPrice = emit(
+    emit(
       state.copyWith(priceFilter: event.price),
     );
   }
 
-  void _handleDateFilterEvent(
-    DateFilterEvent event,
+  void _handleTimeFilterEvent(
+    TimeFilterEvent event,
     Emitter<InfluencersState> emit,
   ) {
-    final filteredData = emit(
-      state.copyWith(dateFilter: event.date),
+    emit(
+      state.copyWith(timeFilter: event.time),
     );
   }
 
-  void _handlePopularityFilterEvent(
-    PopularityFilterEvent event,
+  void _handleFollowersFilterEvent(
+    FollowersFilterEvent event,
     Emitter<InfluencersState> emit,
   ) {
-    final filteredPopularity = emit(
-      state.copyWith(popularityFilter: event.popularity),
+    emit(
+      state.copyWith(followersFilter: event.followers),
     );
   }
 
@@ -42,8 +57,41 @@ class InfluencersBloc extends Bloc<InfluencersEvent, InfluencersState> {
     CountryFilterEvent event,
     Emitter<InfluencersState> emit,
   ) {
-    final filteredCountry = emit(
+    emit(
       state.copyWith(countryFilter: event.country),
     );
+  }
+
+  Future<void> _handleFilterDataEvent(
+    FilterDataEvent event,
+    Emitter<InfluencersState> emit,
+  ) async {
+    final filteredPrice = state.priceFilter;
+    final filteredTime = state.timeFilter;
+    final filteredFollowers = state.followersFilter;
+    final filteredCountry = state.countryFilter;
+
+    try {
+      await _filterInfluencersListUseCase.execute(
+        FilteredInfluencer(
+          price: filteredPrice,
+          time: filteredTime,
+          followers: filteredFollowers,
+          country: filteredCountry,
+        ),
+      );
+      emit(
+        state.copyWith(
+          status: FilteringStatus.filteringComplete,
+        ),
+      );
+    } on Exception catch (error) {
+      emit(
+        state.copyWith(
+          status: FilteringStatus.error,
+          message: error.toString(),
+        ),
+      );
+    }
   }
 }

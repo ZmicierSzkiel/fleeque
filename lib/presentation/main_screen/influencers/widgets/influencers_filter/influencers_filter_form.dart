@@ -1,4 +1,7 @@
+import 'package:fleeque/core/app_locator.dart';
 import 'package:fleeque/domain/entities/influencer.dart';
+import 'package:fleeque/domain/repositories/db_repository.dart';
+import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
 import 'package:fleeque/presentation/main_screen/influencers/bloc/influencers_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +27,12 @@ class InfluencersFilterForm extends StatelessWidget {
       '50-100',
     ];
     final List<String> dateRange = [
+      'Select',
       'Newest',
       'Oldest',
     ];
     final List<String> popularityRange = [
+      'Select',
       '<100K followers',
       '100K to 500K followers',
       '500K to 1M followers',
@@ -35,9 +40,14 @@ class InfluencersFilterForm extends StatelessWidget {
     ];
     final List<String> countryRange =
         influencers.map((influencer) => influencer.country).toList();
+    countryRange.insert(0, 'Select');
 
     return BlocProvider(
-      create: (context) => InfluencersBloc(),
+      create: (context) => InfluencersBloc(
+        filterInfluencersListUseCase: FilterInfluencersListUseCase(
+          repository: getIt.get<DbRepository>(),
+        ),
+      ),
       child: BlocBuilder<InfluencersBloc, InfluencersState>(
         builder: (context, state) {
           return Scaffold(
@@ -75,20 +85,20 @@ class InfluencersFilterForm extends StatelessWidget {
                     ),
                     InfluencerDropdownButton(
                       valueList: dateRange,
-                      filterSelectedValue: state.dateFilter,
+                      filterSelectedValue: state.timeFilter,
                       labelText: 'Time',
                       onChanged: (value) {
                         BlocProvider.of<InfluencersBloc>(context)
-                            .add(DateFilterEvent(value!));
+                            .add(TimeFilterEvent(value!));
                       },
                     ),
                     InfluencerDropdownButton(
-                      filterSelectedValue: state.popularityFilter,
+                      filterSelectedValue: state.followersFilter,
                       valueList: popularityRange,
                       labelText: 'Popularity',
                       onChanged: (value) {
                         BlocProvider.of<InfluencersBloc>(context)
-                            .add(PopularityFilterEvent(value!));
+                            .add(FollowersFilterEvent(value!));
                       },
                     ),
                     InfluencerDropdownButton(
@@ -132,6 +142,9 @@ class InfluencersFilterForm extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
+                          BlocProvider.of<InfluencersBloc>(context).add(
+                            FilterDataEvent(),
+                          );
                           Navigator.pop(context);
                         },
                       ),

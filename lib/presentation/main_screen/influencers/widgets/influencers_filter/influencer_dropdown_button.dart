@@ -6,7 +6,7 @@ class InfluencerDropdownButton extends StatelessWidget {
   final void Function(String?)? onChanged;
   final String labelText;
   final List<String> valueList;
-  final String? filterSelectedValue;
+  final String filterSelectedValue;
 
   const InfluencerDropdownButton({
     super.key,
@@ -33,7 +33,9 @@ class InfluencerDropdownButton extends StatelessWidget {
         ),
         DropdownButtonHideUnderline(
           child: DropdownButton(
-            value: filterSelectedValue ?? valueList[0],
+            value: filterSelectedValue.isNotEmpty
+                ? filterSelectedValue
+                : valueList[0],
             elevation: 10,
             icon: const Visibility(
               visible: false,
