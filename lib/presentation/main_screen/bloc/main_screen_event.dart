@@ -1,17 +1,17 @@
 part of 'main_screen_bloc.dart';
 
-abstract class MainScreenEvent {
+sealed class MainScreenEvent {
   const MainScreenEvent();
 }
 
-class GetInfluencersEvent extends MainScreenEvent {
+final class GetInfluencersEvent extends MainScreenEvent {
   const GetInfluencersEvent();
 }
 
-class ItemTappedEvent extends MainScreenEvent {
+final class ItemTappedEvent extends MainScreenEvent {
   final int index;
 
   ItemTappedEvent(this.index);
 }
 
-class GetFilteredInfluencersEvent extends MainScreenEvent {}
+final class GetFilteredInfluencersEvent extends MainScreenEvent {}

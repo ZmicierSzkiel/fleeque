@@ -22,66 +22,67 @@ class FirebaseDbProvider {
   Future<List<InfluencerMapper>> getFilteredInfluencersFromDB(
     FilteredInfluencer params,
   ) async {
-    final filteredInfluencers = _db.collection('products');
-    Query<Map<String, dynamic>> filteredQuery = filteredInfluencers;
+    final QuerySnapshot<Map<String, dynamic>> filteredInfluencers =
+        await _db.collection('products').get();
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> docs =
+        filteredInfluencers.docs.toList();
 
-    if (params.time != 'Select') {
-      if (params.time == 'Newest') {
-        filteredQuery = filteredQuery.orderBy(
-          'time',
-          descending: true,
-        );
-      } else if (params.time == 'Oldest') {
-        filteredQuery = filteredQuery.orderBy(
-          'time',
-          descending: false,
-        );
-      }
-    }
-
-    if (params.price != 'Select') {
+    if (params.price.isNotEmpty && params.price != 'Select') {
       final List<String> priceRange = params.price.split('-');
       final int minPrice = int.parse(priceRange[0]);
       final int maxPrice = int.parse(priceRange[1]);
-      filteredQuery = filteredQuery.where(
-        'price',
-        isGreaterThanOrEqualTo: minPrice,
-        isLessThanOrEqualTo: maxPrice,
+      docs = docs.where(
+        (doc) {
+          final int price = doc.get('price');
+          return price >= minPrice && price <= maxPrice;
+        },
+      ).toList();
+    }
+
+    if (params.time.isNotEmpty && params.time != 'Select') {
+      docs.sort(
+        ((a, b) {
+          final int aTime = a.get('time').microsecondsSinceEpoch;
+          final int bTime = b.get('time').microsecondsSinceEpoch;
+          if (params.time == 'Newest') {
+            return bTime.compareTo(aTime);
+          } else if (params.time == 'Oldest') {
+            return aTime.compareTo(bTime);
+          }
+          return -1;
+        }),
       );
     }
 
-    if (params.followers != 'Select') {
-      if (params.followers == '<100K followers') {
-        filteredQuery = filteredQuery.where(
-          'followers',
-          isLessThanOrEqualTo: 100,
-        );
-      } else if (params.followers == '100K to 500K followers') {
-        filteredQuery = filteredQuery.where(
-          'followers',
-          isGreaterThanOrEqualTo: 100,
-          isLessThanOrEqualTo: 500,
-        );
-      } else if (params.followers == '500K to 1M followers') {
-        filteredQuery = filteredQuery.where(
-          'followers',
-          isGreaterThanOrEqualTo: 500,
-          isLessThanOrEqualTo: 1000,
-        );
-      } else if (params.followers == '>1M followers') {
-        filteredQuery = filteredQuery.where(
-          'followers',
-          isGreaterThanOrEqualTo: 1000,
-        );
-      }
-    }
-    if (params.country != 'Select') {
-      filteredQuery = filteredQuery.where('country', isEqualTo: params.country);
+    if (params.followers.isNotEmpty && params.followers != 'Select') {
+      docs = docs.where(
+        (doc) {
+          final int followers = doc.get('followers');
+          switch (params.followers) {
+            case '<100K followers':
+              return followers <= 100;
+            case '100K to 500K followers':
+              return followers >= 100 && followers <= 500;
+            case '500K to 1M followers':
+              return followers >= 500 && followers <= 1000;
+            case '>1M followers':
+              return followers >= 1000;
+          }
+          return false;
+        },
+      ).toList();
     }
 
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await filteredQuery.get();
-    return querySnapshot.docs.map(
+    if (params.country.isNotEmpty && params.country != 'Select') {
+      docs = docs.where(
+        (doc) {
+          final country = doc.get('country');
+          return country == params.country;
+        },
+      ).toList();
+    }
+
+    return docs.map(
       (QueryDocumentSnapshot<Map<String, dynamic>> doc) {
         return InfluencerMapper.fromJson(doc.data());
       },

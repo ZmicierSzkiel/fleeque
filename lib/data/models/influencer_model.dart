@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fleeque/domain/entities/influencer.dart';
 
 class InfluencerMapper extends Influencer {
@@ -8,7 +9,7 @@ class InfluencerMapper extends Influencer {
     required String image,
     required String country,
     required int price,
-    required Object time,
+    required Timestamp time,
   }) : super(
           name: name,
           followers: followers,

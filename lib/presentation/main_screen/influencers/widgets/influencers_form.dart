@@ -82,7 +82,7 @@ class InfluencersForm extends StatelessWidget {
               ),
               InfluencersList(
                 influencers: influencers,
-                length: influencers.length * 2,
+                length: influencers.length,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(

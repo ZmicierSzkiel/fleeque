@@ -1,6 +1,6 @@
 part of 'main_screen_bloc.dart';
 
-class MainScreenState {
+final class MainScreenState {
   final List<Influencer> influencers;
   final int selectedIndex;
 

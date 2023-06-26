@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Influencer {
   const Influencer({
     required this.name,
@@ -15,5 +17,5 @@ class Influencer {
   final int posts;
   final String country;
   final int price;
-  final Object time;
+  final Timestamp time;
 }
