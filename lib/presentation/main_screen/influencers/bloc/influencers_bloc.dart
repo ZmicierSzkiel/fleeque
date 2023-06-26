@@ -1,16 +1,21 @@
 import 'package:bloc/bloc.dart';
+import 'package:fleeque/core/use_case.dart';
 
 import 'package:fleeque/domain/entities/filtered_influencer.dart';
 import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
+import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 
 part 'influencers_event.dart';
 part 'influencers_state.dart';
 
 class InfluencersBloc extends Bloc<InfluencersEvent, InfluencersState> {
   final FilterInfluencersListUseCase _filterInfluencersListUseCase;
+  final GetInfluencersListUseCase _getInfluencersListUseCase;
   InfluencersBloc({
     required FilterInfluencersListUseCase filterInfluencersListUseCase,
+    required GetInfluencersListUseCase getInfluencersListUseCase,
   })  : _filterInfluencersListUseCase = filterInfluencersListUseCase,
+        _getInfluencersListUseCase = getInfluencersListUseCase,
         super(
           const InfluencersState(
             countryFilter: '',
@@ -24,6 +29,7 @@ class InfluencersBloc extends Bloc<InfluencersEvent, InfluencersState> {
     on<FollowersFilterEvent>(_handleFollowersFilterEvent);
     on<CountryFilterEvent>(_handleCountryFilterEvent);
     on<FilterDataEvent>(_handleFilterDataEvent);
+    on<ResetFilterEvent>(_handleResetFilterEvent);
   }
 
   void _handlePriceFilterEvent(
@@ -93,5 +99,10 @@ class InfluencersBloc extends Bloc<InfluencersEvent, InfluencersState> {
         ),
       );
     }
+  }
+
+  Future<void> _handleResetFilterEvent(
+      ResetFilterEvent event, Emitter<InfluencersState> emit) async {
+    await _getInfluencersListUseCase.execute(NoParams());
   }
 }

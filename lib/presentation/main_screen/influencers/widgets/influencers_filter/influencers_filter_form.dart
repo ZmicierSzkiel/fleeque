@@ -1,14 +1,18 @@
-import 'package:fleeque/core/app_locator.dart';
-import 'package:fleeque/domain/entities/influencer.dart';
-import 'package:fleeque/domain/repositories/db_repository.dart';
-import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
-import 'package:fleeque/presentation/main_screen/influencers/bloc/influencers_bloc.dart';
+import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:fleeque/core/app_locator.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
 import 'package:fleeque/core_ui/secondary_app_bar.dart';
+
+import 'package:fleeque/domain/entities/influencer.dart';
+import 'package:fleeque/domain/repositories/db_repository.dart';
+import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
+
+import 'package:fleeque/presentation/main_screen/influencers/bloc/influencers_bloc.dart';
 import 'package:fleeque/presentation/main_screen/influencers/widgets/influencers_filter/influencer_dropdown_button.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InfluencersFilterForm extends StatelessWidget {
   final List<Influencer> influencers;
@@ -45,6 +49,9 @@ class InfluencersFilterForm extends StatelessWidget {
     return BlocProvider(
       create: (context) => InfluencersBloc(
         filterInfluencersListUseCase: FilterInfluencersListUseCase(
+          repository: getIt.get<DbRepository>(),
+        ),
+        getInfluencersListUseCase: GetInfluencersListUseCase(
           repository: getIt.get<DbRepository>(),
         ),
       ),
@@ -109,6 +116,22 @@ class InfluencersFilterForm extends StatelessWidget {
                         BlocProvider.of<InfluencersBloc>(context)
                             .add(CountryFilterEvent(value!));
                       },
+                    ),
+                    TextButton(
+                      style: ButtonStyle(
+                        overlayColor: MaterialStatePropertyAll(
+                          AppColors.primaryColor.withOpacity(0.1),
+                        ),
+                      ),
+                      onPressed: () {
+                        BlocProvider.of<InfluencersBloc>(context)
+                            .add(ResetFilterEvent());
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Reset sorting',
+                        style: AppFonts.mediumFontPrefsWhiteLink,
+                      ),
                     ),
                     const Spacer(),
                     Padding(

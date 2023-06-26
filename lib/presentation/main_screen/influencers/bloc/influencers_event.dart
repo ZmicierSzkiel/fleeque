@@ -29,3 +29,5 @@ class FollowersFilterEvent extends InfluencersEvent {
 }
 
 class FilterDataEvent extends InfluencersEvent {}
+
+class ResetFilterEvent extends InfluencersEvent {}
