@@ -1,15 +1,16 @@
-part of 'influencers_bloc.dart';
+part of 'home_bloc.dart';
 
-class InfluencersState {
+class HomeState {
   final List<Influencer> influencers;
-  const InfluencersState({
+
+  const HomeState({
     required this.influencers,
   });
 
-  InfluencersState copyWith({
+  HomeState copyWith({
     List<Influencer>? influencers,
   }) {
-    return InfluencersState(
+    return HomeState(
       influencers: influencers ?? this.influencers,
     );
   }

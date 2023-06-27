@@ -7,18 +7,16 @@ import 'package:fleeque/domain/repositories/db_repository.dart';
 import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/observe_usecase.dart';
 
-import 'package:fleeque/presentation/main_screen/screens/influencers/bloc/influencers_bloc.dart';
-import 'package:fleeque/presentation/main_screen/screens/influencers/influencers_form.dart';
+import 'package:fleeque/presentation/main_screen/screens/home/bloc/home_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/home/home_form.dart';
 
-class InfluencersScreen extends StatelessWidget {
-  const InfluencersScreen({
-    super.key,
-  });
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => InfluencersBloc(
+      create: (context) => HomeBloc(
         getInfluencersListUseCase: GetInfluencersListUseCase(
           repository: getIt.get<DbRepository>(),
         ),
@@ -29,10 +27,12 @@ class InfluencersScreen extends StatelessWidget {
         ..add(
           const GetInfluencersEvent(),
         )
-        ..add(const RenderInfluencersEvent()),
-      child: BlocBuilder<InfluencersBloc, InfluencersState>(
+        ..add(
+          const RenderInfluencersEvent(),
+        ),
+      child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          return InfluencersForm(
+          return HomeForm(
             influencers: state.influencers,
           );
         },

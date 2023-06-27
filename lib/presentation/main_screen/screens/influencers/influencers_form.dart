@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
+
 import 'package:fleeque/domain/entities/influencer.dart';
 
+import 'package:fleeque/presentation/main_screen/screens/influencers_filter/influencers_filter_screen.dart';
 import 'package:fleeque/presentation/main_screen/widgets/influencer_carousel.dart';
 import 'package:fleeque/presentation/main_screen/widgets/influencers_list.dart';
-import 'package:fleeque/presentation/main_screen/screens/influencers/widgets/influencers_filter/influencers_filter_form.dart';
 
 class InfluencersForm extends StatelessWidget {
   final List<Influencer> influencers;
@@ -52,7 +53,7 @@ class InfluencersForm extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => InfluencersFilterForm(
+                            builder: (context) => InfluencersFilterScreen(
                               influencers: influencers,
                             ),
                           ),

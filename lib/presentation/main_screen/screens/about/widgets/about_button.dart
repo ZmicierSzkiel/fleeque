@@ -1,5 +1,6 @@
-import 'package:fleeque/core_ui/constants.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fleeque/core_ui/constants.dart';
 
 class AboutButton extends StatelessWidget {
   final String title;

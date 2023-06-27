@@ -1,33 +1,13 @@
 part of 'influencers_bloc.dart';
 
-abstract class InfluencersEvent {
+sealed class InfluencersEvent {
   const InfluencersEvent();
 }
 
-class CountryFilterEvent extends InfluencersEvent {
-  final String country;
-
-  CountryFilterEvent(this.country);
+final class GetInfluencersEvent extends InfluencersEvent {
+  const GetInfluencersEvent();
 }
 
-class TimeFilterEvent extends InfluencersEvent {
-  final String time;
-
-  TimeFilterEvent(this.time);
+final class RenderInfluencersEvent extends InfluencersEvent {
+  const RenderInfluencersEvent();
 }
-
-class PriceFilterEvent extends InfluencersEvent {
-  final String price;
-
-  PriceFilterEvent(this.price);
-}
-
-class FollowersFilterEvent extends InfluencersEvent {
-  final String followers;
-
-  FollowersFilterEvent(this.followers);
-}
-
-class FilterDataEvent extends InfluencersEvent {}
-
-class ResetFilterEvent extends InfluencersEvent {}
