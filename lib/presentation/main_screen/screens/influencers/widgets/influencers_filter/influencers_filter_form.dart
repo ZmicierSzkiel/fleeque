@@ -11,8 +11,8 @@ import 'package:fleeque/domain/entities/influencer.dart';
 import 'package:fleeque/domain/repositories/db_repository.dart';
 import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
 
-import 'package:fleeque/presentation/main_screen/influencers/bloc/influencers_bloc.dart';
-import 'package:fleeque/presentation/main_screen/influencers/widgets/influencers_filter/influencer_dropdown_button.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers/bloc/influencers_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers/widgets/influencers_filter/influencer_dropdown_button.dart';
 
 class InfluencersFilterForm extends StatelessWidget {
   final List<Influencer> influencers;

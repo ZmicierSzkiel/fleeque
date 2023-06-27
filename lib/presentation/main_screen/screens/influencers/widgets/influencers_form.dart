@@ -5,7 +5,7 @@ import 'package:fleeque/domain/entities/influencer.dart';
 
 import 'package:fleeque/presentation/main_screen/widgets/influencer_carousel.dart';
 import 'package:fleeque/presentation/main_screen/widgets/influencers_list.dart';
-import 'package:fleeque/presentation/main_screen/influencers/widgets/influencers_filter/influencers_filter_form.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers/widgets/influencers_filter/influencers_filter_form.dart';
 
 class InfluencersForm extends StatelessWidget {
   final List<Influencer> influencers;

@@ -27,60 +27,72 @@ class FirebaseDbProvider {
     List<QueryDocumentSnapshot<Map<String, dynamic>>> docs =
         filteredInfluencers.docs.toList();
 
-    if (params.price.isNotEmpty && params.price != 'Select') {
-      final List<String> priceRange = params.price.split('-');
-      final int minPrice = int.parse(priceRange[0]);
-      final int maxPrice = int.parse(priceRange[1]);
-      docs = docs.where(
-        (doc) {
-          final int price = doc.get('price');
-          return price >= minPrice && price <= maxPrice;
-        },
-      ).toList();
-    }
+    final bool hasPriceFilter =
+        params.price.isNotEmpty && params.price != 'Select';
+    final bool hasTimeFilter =
+        params.time.isNotEmpty && params.time != 'Select';
+    final bool hasFollowersFilter =
+        params.followers.isNotEmpty && params.followers != 'Select';
+    final bool hasCountryFilter =
+        params.country.isNotEmpty && params.country != 'Select';
 
-    if (params.time.isNotEmpty && params.time != 'Select') {
-      docs.sort(
-        ((a, b) {
-          final int aTime = a.get('time').microsecondsSinceEpoch;
-          final int bTime = b.get('time').microsecondsSinceEpoch;
-          if (params.time == 'Newest') {
-            return bTime.compareTo(aTime);
-          } else if (params.time == 'Oldest') {
-            return aTime.compareTo(bTime);
-          }
-          return -1;
-        }),
-      );
-    }
+    final String priceParams = params.price;
+    final String timeParams = params.time;
+    final String followersParams = params.followers;
+    final String countryParams = params.country;
 
-    if (params.followers.isNotEmpty && params.followers != 'Select') {
-      docs = docs.where(
-        (doc) {
-          final int followers = doc.get('followers');
-          switch (params.followers) {
-            case '<100K followers':
-              return followers <= 100;
-            case '100K to 500K followers':
-              return followers >= 100 && followers <= 500;
-            case '500K to 1M followers':
-              return followers >= 500 && followers <= 1000;
-            case '>1M followers':
-              return followers >= 1000;
-          }
-          return false;
-        },
-      ).toList();
-    }
+    hasPriceFilter
+        ? docs = docs.where(
+            (doc) {
+              final List<String> priceRange = priceParams.split('-');
+              final int minPrice = int.parse(priceRange[0]);
+              final int maxPrice = int.parse(priceRange[1]);
+              final int price = doc.get('price');
+              return price >= minPrice && price <= maxPrice;
+            },
+          ).toList()
+        : docs;
 
-    if (params.country.isNotEmpty && params.country != 'Select') {
-      docs = docs.where(
-        (doc) {
-          final country = doc.get('country');
-          return country == params.country;
-        },
-      ).toList();
-    }
+    hasTimeFilter
+        ? docs.sort(
+            ((a, b) {
+              final int aTime = a.get('time').microsecondsSinceEpoch;
+              final int bTime = b.get('time').microsecondsSinceEpoch;
+              timeParams == 'Newest'
+                  ? bTime.compareTo(aTime)
+                  : aTime.compareTo(bTime);
+              return -1;
+            }),
+          )
+        : docs;
+
+    hasFollowersFilter
+        ? docs = docs.where(
+            (doc) {
+              final int followers = doc.get('followers');
+              switch (followersParams) {
+                case '<100K followers':
+                  return followers <= 100;
+                case '100K to 500K followers':
+                  return followers >= 100 && followers <= 500;
+                case '500K to 1M followers':
+                  return followers >= 500 && followers <= 1000;
+                case '>1M followers':
+                  return followers >= 1000;
+              }
+              return false;
+            },
+          ).toList()
+        : docs;
+
+    hasCountryFilter
+        ? docs = docs.where(
+            (doc) {
+              final country = doc.get('country');
+              return country == countryParams;
+            },
+          ).toList()
+        : docs;
 
     return docs.map(
       (QueryDocumentSnapshot<Map<String, dynamic>> doc) {

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fleeque/core_ui/constants.dart';
 
 import 'package:fleeque/presentation/main_screen/bloc/main_screen_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers/influencers_screen.dart';
 import 'package:fleeque/presentation/main_screen/widgets/influencer_carousel.dart';
 import 'package:fleeque/presentation/main_screen/widgets/influencers_list.dart';
 
@@ -76,13 +77,14 @@ class HomeForm extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) =>
-                      //         InfluencersScreen(influencers: state.influencers),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InfluencersScreen(
+                            influencers: state.influencers,
+                          ),
+                        ),
+                      );
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),

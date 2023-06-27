@@ -6,8 +6,8 @@ import 'package:fleeque/core/app_locator.dart';
 import 'package:fleeque/domain/repositories/auth_repository.dart';
 import 'package:fleeque/domain/usecases/auth_usecases/sign_out_user_usecase.dart';
 
-import 'package:fleeque/presentation/main_screen/user_settings/bloc/user_settings_bloc.dart';
-import 'package:fleeque/presentation/main_screen/user_settings/widgets/user_settings_form.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/bloc/user_settings_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/widgets/user_settings_form.dart';
 
 class UserSettingsScreen extends StatelessWidget {
   const UserSettingsScreen({super.key});

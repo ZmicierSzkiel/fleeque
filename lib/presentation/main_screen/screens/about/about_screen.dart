@@ -1,4 +1,4 @@
-import 'package:fleeque/presentation/main_screen/about/widgets/about_form.dart';
+import 'package:fleeque/presentation/main_screen/screens/about/widgets/about_form.dart';
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {

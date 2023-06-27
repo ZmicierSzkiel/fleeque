@@ -5,9 +5,9 @@ import 'package:fleeque/core_ui/constants.dart';
 import 'package:fleeque/core_ui/secondary_app_bar.dart';
 
 import 'package:fleeque/presentation/auth/login/login_screen.dart';
-import 'package:fleeque/presentation/main_screen/user_settings/bloc/user_settings_bloc.dart';
-import 'package:fleeque/presentation/main_screen/user_settings/widgets/user_settings_add_picture_button.dart';
-import 'package:fleeque/presentation/main_screen/user_settings/widgets/user_settings_options.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/bloc/user_settings_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/widgets/user_settings_add_picture_button.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/widgets/user_settings_options.dart';
 
 class UserSettingsForm extends StatelessWidget {
   const UserSettingsForm({super.key});

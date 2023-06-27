@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core_ui/custom_bottom_navigation_bar.dart';
 
-import 'package:fleeque/presentation/main_screen/about/about_screen.dart';
+import 'package:fleeque/presentation/main_screen/screens/about/about_screen.dart';
 import 'package:fleeque/presentation/main_screen/bloc/main_screen_bloc.dart';
-import 'package:fleeque/presentation/main_screen/home/home_form.dart';
-import 'package:fleeque/presentation/main_screen/influencers/influencers_screen.dart';
-import 'package:fleeque/presentation/main_screen/user_settings/user_settings_screen.dart';
+import 'package:fleeque/presentation/main_screen/screens/home/home_form.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers/influencers_screen.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/user_settings_screen.dart';
 
 class MainScreenForm extends StatelessWidget {
   const MainScreenForm({Key? key}) : super(key: key);

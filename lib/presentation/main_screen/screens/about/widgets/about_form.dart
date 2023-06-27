@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
-import 'package:fleeque/presentation/main_screen/about/widgets/about_button.dart';
-import 'package:fleeque/presentation/main_screen/about/widgets/about_text_block.dart';
+import 'package:fleeque/presentation/main_screen/screens/about/widgets/about_button.dart';
+import 'package:fleeque/presentation/main_screen/screens/about/widgets/about_text_block.dart';
 
 class AboutForm extends StatelessWidget {
   const AboutForm({super.key});
