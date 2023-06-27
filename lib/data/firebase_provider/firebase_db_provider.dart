@@ -58,10 +58,9 @@ class FirebaseDbProvider {
             ((a, b) {
               final int aTime = a.get('time').microsecondsSinceEpoch;
               final int bTime = b.get('time').microsecondsSinceEpoch;
-              timeParams == 'Newest'
+              return timeParams == 'Newest'
                   ? bTime.compareTo(aTime)
                   : aTime.compareTo(bTime);
-              return -1;
             }),
           )
         : docs;
