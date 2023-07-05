@@ -1,8 +1,8 @@
-import 'package:fleeque/presentation/auth/login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fleeque/presentation/auth/login/bloc/login_bloc.dart';
 
 class EmailInput extends StatefulWidget {
   final String? Function(String?) validator;

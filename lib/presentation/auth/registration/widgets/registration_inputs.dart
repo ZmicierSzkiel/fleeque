@@ -21,8 +21,8 @@ class RegistrationInputs extends StatelessWidget {
             },
             hintText: "Email".toUpperCase(),
           ),
-          const SizedBox(
-            height: 20.0,
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
           ),
           RegistrationPassInput(
             obscureText: true,
@@ -33,9 +33,6 @@ class RegistrationInputs extends StatelessWidget {
               return value;
             },
             hintText: "Password".toUpperCase(),
-          ),
-          const SizedBox(
-            height: 20.0,
           ),
         ],
       ),

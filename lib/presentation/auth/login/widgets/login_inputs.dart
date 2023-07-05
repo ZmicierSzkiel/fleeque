@@ -22,10 +22,7 @@ class LoginInputs extends StatelessWidget {
             hintText: "Email".toUpperCase(),
           ),
           const Padding(
-            padding: EdgeInsets.all(8.0),
-          ),
-          const SizedBox(
-            height: 20.0,
+            padding: EdgeInsets.symmetric(vertical: 5),
           ),
           PassInput(
             obscureText: true,

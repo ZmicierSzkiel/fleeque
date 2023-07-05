@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,73 +17,69 @@ class RegistrationForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Center(
+          const Padding(
+            padding: EdgeInsets.only(bottom: 40.0),
             child: Text(
               'Register your account',
               style: AppFonts.largeFontPrefsBlack,
             ),
           ),
-          const SizedBox(
-            height: 80.0,
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.0),
+            child: RegistrationInputs(),
           ),
-          const RegistrationInputs(),
-          const SizedBox(
-            height: 30.0,
-          ),
-          Center(
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  const TextSpan(
-                    text: "Already have an account? ",
-                    style: AppFonts.mediumFontPrefsBlack,
-                  ),
-                  TextSpan(
-                    text: "Sign in!",
-                    style: AppFonts.mediumFontPrefsRedLink,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pop(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
-                      },
-                  ),
-                ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Already have an account?",
+                style: AppFonts.mediumFontPrefsBlack,
               ),
-            ),
-          ),
-          const SizedBox(
-            height: 30.0,
-          ),
-          Container(
-            width: 240.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFc33294),
-                  Color(0xFF714aac),
-                ],
-                stops: [
-                  0.19,
-                  0.9951,
-                ],
+              TextButton(
+                child: const Text(
+                  "Sign in!",
+                  style: AppFonts.mediumFontPrefsRedLink,
+                ),
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
               ),
-            ),
-            child: TextButton(
-              onPressed: () {
-                context
-                    .read<RegistrationBloc>()
-                    .add(const RegistrationButtonPressedEvent());
-              },
-              child: Text(
-                "Register".toUpperCase(),
-                style: AppFonts.mediumFontPrefsWhite,
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 40.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.6,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFFc33294),
+                    Color(0xFF714aac),
+                  ],
+                  stops: [
+                    0.19,
+                    0.9951,
+                  ],
+                ),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  context
+                      .read<RegistrationBloc>()
+                      .add(const RegistrationButtonPressedEvent());
+                },
+                child: Text(
+                  "Register".toUpperCase(),
+                  style: AppFonts.mediumFontPrefsWhite,
+                ),
               ),
             ),
           ),
