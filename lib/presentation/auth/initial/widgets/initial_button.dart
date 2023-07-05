@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
-
-import 'package:fleeque/presentation/auth/initial/widgets/initial_carousel.dart';
+import 'package:fleeque/presentation/auth/carousel/carousel_screen.dart';
 
 class InitialButton extends StatelessWidget {
   const InitialButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double buttonWidth = screenWidth * 0.5;
+    final double buttonHeight = screenWidth * 0.15;
+
     return Container(
-      width: 240.0,
-      height: 60.0,
+      width: buttonWidth,
+      height: buttonHeight,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: AppColors.primaryColor),
+        borderRadius: BorderRadius.circular(50),
+        color: AppColors.primaryColor,
+      ),
       child: TextButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const InitialCarousel()),
+            MaterialPageRoute(
+              builder: (context) => const CarouselScreen(),
+            ),
           );
         },
         child: Text(

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fleeque/core/app_locator.dart';
 
 import 'package:fleeque/domain/entities/influencer.dart';
-import 'package:fleeque/domain/repositories/db_repository.dart';
 import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 
@@ -22,12 +21,8 @@ class InfluencersFilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final influencersFilterBloc = InfluencersFilterBloc(
-      filterInfluencersListUseCase: FilterInfluencersListUseCase(
-        repository: getIt.get<DbRepository>(),
-      ),
-      getInfluencersListUseCase: GetInfluencersListUseCase(
-        repository: getIt.get<DbRepository>(),
-      ),
+      filterInfluencersListUseCase: getIt<FilterInfluencersListUseCase>(),
+      getInfluencersListUseCase: getIt<GetInfluencersListUseCase>(),
     );
     final priceRange = influencersFilterBloc.getPriceRange();
     final timeRange = influencersFilterBloc.getTimeRange();

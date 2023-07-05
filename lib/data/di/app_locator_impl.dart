@@ -13,9 +13,26 @@ import 'package:fleeque/data/shared_preferences_provider/shared_preferences_prov
 import 'package:fleeque/domain/repositories/auth_repository.dart';
 import 'package:fleeque/domain/repositories/db_repository.dart';
 import 'package:fleeque/domain/repositories/user_repository.dart';
+import 'package:fleeque/domain/usecases/auth_usecases/login_user_usecase.dart';
+import 'package:fleeque/domain/usecases/auth_usecases/register_user_usecase.dart';
+import 'package:fleeque/domain/usecases/auth_usecases/sign_out_user_usecase.dart';
+import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
+import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
+import 'package:fleeque/domain/usecases/db_usecases/observe_usecase.dart';
+import 'package:fleeque/domain/usecases/user_usecases/get_user_usecase.dart';
+import 'package:fleeque/domain/usecases/user_usecases/is_first_launch_usecase.dart';
+import 'package:fleeque/domain/usecases/user_usecases/set_first_launch_usecase.dart';
 
 Future<void> setupLocator() async {
   await _initPrefs();
+
+  getIt.registerSingleton<FirebaseAuthProvider>(
+    FirebaseAuthProvider(),
+  );
+
+  getIt.registerSingleton<FirebaseDbProvider>(
+    FirebaseDbProvider(),
+  );
 
   getIt.registerLazySingleton<UserRepository>(
     () => UserRepositoryImpl(
@@ -35,17 +52,67 @@ Future<void> setupLocator() async {
       dbProvider: getIt.get<FirebaseDbProvider>(),
     ),
   );
+
+  getIt.registerLazySingleton<SignOutUserUseCase>(
+    () => SignOutUserUseCase(
+      repository: getIt.get<AuthRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<FilterInfluencersListUseCase>(
+    () => FilterInfluencersListUseCase(
+      repository: getIt.get<DbRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<GetInfluencersListUseCase>(
+    () => GetInfluencersListUseCase(
+      repository: getIt.get<DbRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<ObserveUseCase>(
+    () => ObserveUseCase(
+      repository: getIt.get<DbRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<RegisterUserUseCase>(
+    () => RegisterUserUseCase(
+      repository: getIt.get<AuthRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<LoginUserUseCase>(
+    () => LoginUserUseCase(
+      repository: getIt.get<AuthRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<IsFirstLaunchUseCase>(
+    () => IsFirstLaunchUseCase(
+      repository: getIt.get<UserRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<SetFirstLaunchUseCase>(
+    () => SetFirstLaunchUseCase(
+      repository: getIt.get<UserRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<GetUserUseCase>(
+    () => GetUserUseCase(
+      repository: getIt.get<UserRepository>(),
+    ),
+  );
 }
 
 Future<void> _initPrefs() async {
   final SharedPreferencesProvider prefsProvider =
       SharedPreferencesProviderImpl();
-  final FirebaseAuthProvider firebaseAuthProvider = FirebaseAuthProvider();
-  final FirebaseDbProvider firebaseDbProvider = FirebaseDbProvider();
 
   await prefsProvider.init();
 
   getIt.registerSingleton<SharedPreferencesProvider>(prefsProvider);
-  getIt.registerSingleton<FirebaseAuthProvider>(firebaseAuthProvider);
-  getIt.registerSingleton<FirebaseDbProvider>(firebaseDbProvider);
 }

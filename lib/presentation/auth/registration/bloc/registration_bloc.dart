@@ -8,28 +8,46 @@ part 'registration_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   final RegisterUserUseCase _registerUserUseCase;
-  RegistrationBloc({required RegisterUserUseCase registerUserUseCase})
-      : _registerUserUseCase = registerUserUseCase,
-        super(const RegistrationState()) {
+
+  RegistrationBloc({
+    required RegisterUserUseCase registerUserUseCase,
+  })  : _registerUserUseCase = registerUserUseCase,
+        super(
+          const RegistrationState(),
+        ) {
     on<RegistrationButtonPressedEvent>(
-        _handleRegistrationWithEmailAndPasswordEvent);
-    on<RegistrationEmailChangedEvent>(_handleRegistrationEmailChangedEvent);
+      _handleRegistrationWithEmailAndPasswordEvent,
+    );
+    on<RegistrationEmailChangedEvent>(
+      _handleRegistrationEmailChangedEvent,
+    );
     on<RegistrationPasswordChangedEvent>(
-        _handleRegistrationPasswordChangedEvent);
+      _handleRegistrationPasswordChangedEvent,
+    );
   }
 
   Future<void> _handleRegistrationWithEmailAndPasswordEvent(
       RegistrationButtonPressedEvent event,
       Emitter<RegistrationState> emit) async {
     try {
-      final RegisterUserRequest registerUserRequest =
-          RegisterUserRequest(email: state.email, password: state.password);
+      final RegisterUserRequest registerUserRequest = RegisterUserRequest(
+        email: state.email,
+        password: state.password,
+      );
       await _registerUserUseCase.execute(registerUserRequest);
-      emit(state.copyWith(
-          message: "Success", status: RegistrationStatus.success));
+      emit(
+        state.copyWith(
+          message: "Success",
+          status: RegistrationStatus.success,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-          message: e.toString(), status: RegistrationStatus.failure));
+      emit(
+        state.copyWith(
+          message: e.toString(),
+          status: RegistrationStatus.failure,
+        ),
+      );
     }
   }
 
@@ -37,13 +55,21 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationEmailChangedEvent event,
     Emitter<RegistrationState> emit,
   ) async {
-    emit(state.copyWith(email: event.email));
+    emit(
+      state.copyWith(
+        email: event.email,
+      ),
+    );
   }
 
   Future<void> _handleRegistrationPasswordChangedEvent(
     RegistrationPasswordChangedEvent event,
     Emitter<RegistrationState> emit,
   ) async {
-    emit(state.copyWith(password: event.password));
+    emit(
+      state.copyWith(
+        password: event.password,
+      ),
+    );
   }
 }

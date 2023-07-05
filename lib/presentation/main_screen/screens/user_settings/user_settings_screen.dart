@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core/app_locator.dart';
 
-import 'package:fleeque/domain/repositories/auth_repository.dart';
 import 'package:fleeque/domain/usecases/auth_usecases/sign_out_user_usecase.dart';
 
 import 'package:fleeque/presentation/main_screen/screens/user_settings/bloc/user_settings_bloc.dart';
@@ -16,9 +15,7 @@ class UserSettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserSettingsBloc(
-        signOutUserUseCase: SignOutUserUseCase(
-          repository: getIt.get<AuthRepository>(),
-        ),
+        signOutUserUseCase: getIt<SignOutUserUseCase>(),
       ),
       child: BlocBuilder<UserSettingsBloc, UserSettingsState>(
         builder: (context, state) {

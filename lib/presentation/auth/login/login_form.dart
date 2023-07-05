@@ -5,11 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fleeque/core_ui/constants.dart';
 
 import 'package:fleeque/presentation/auth/login/bloc/login_bloc.dart';
-import 'package:fleeque/presentation/auth/login/widgets/login_form.dart';
+import 'package:fleeque/presentation/auth/login/widgets/login_inputs.dart';
 import 'package:fleeque/presentation/auth/registration/registration_screen.dart';
 
-class LoginWidget extends StatelessWidget {
-  const LoginWidget({super.key});
+class LoginForm extends StatelessWidget {
+  const LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class LoginWidget extends StatelessWidget {
             const SizedBox(
               height: 80.0,
             ),
-            LoginForm(),
+            const LoginInputs(),
             const SizedBox(
               height: 30.0,
             ),

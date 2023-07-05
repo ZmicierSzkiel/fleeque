@@ -9,13 +9,17 @@ class RegistrationButtonPressedEvent extends RegistrationEvent {
 }
 
 class RegistrationEmailChangedEvent extends RegistrationEvent {
-  const RegistrationEmailChangedEvent({required this.email});
+  const RegistrationEmailChangedEvent({
+    required this.email,
+  });
 
   final String email;
 }
 
 class RegistrationPasswordChangedEvent extends RegistrationEvent {
-  const RegistrationPasswordChangedEvent({required this.password});
+  const RegistrationPasswordChangedEvent({
+    required this.password,
+  });
 
   final String password;
 }

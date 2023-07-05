@@ -29,10 +29,11 @@ class RegistrationState {
     String? confirmPassword,
   }) {
     return RegistrationState(
-        email: email ?? this.email,
-        password: password ?? this.password,
-        status: status ?? this.status,
-        message: message ?? this.message,
-        confirmPassword: confirmPassword ?? this.confirmPassword);
+      email: email ?? this.email,
+      password: password ?? this.password,
+      status: status ?? this.status,
+      message: message ?? this.message,
+      confirmPassword: confirmPassword ?? this.confirmPassword,
+    );
   }
 }

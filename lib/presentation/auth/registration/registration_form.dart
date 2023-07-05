@@ -6,10 +6,10 @@ import 'package:fleeque/core_ui/constants.dart';
 
 import 'package:fleeque/presentation/auth/login/login_screen.dart';
 import 'package:fleeque/presentation/auth/registration/bloc/registration_bloc.dart';
-import 'package:fleeque/presentation/auth/registration/widgets/registration_form.dart';
+import 'package:fleeque/presentation/auth/registration/widgets/registration_inputs.dart';
 
-class RegistrationWidget extends StatelessWidget {
-  const RegistrationWidget({super.key});
+class RegistrationForm extends StatelessWidget {
+  const RegistrationForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class RegistrationWidget extends StatelessWidget {
           const SizedBox(
             height: 80.0,
           ),
-          const RegistrationForm(),
+          const RegistrationInputs(),
           const SizedBox(
             height: 30.0,
           ),

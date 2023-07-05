@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:fleeque/core_ui/register_inputs.dart';
 
-class RegistrationForm extends StatelessWidget {
-  const RegistrationForm({super.key});
+class RegistrationInputs extends StatelessWidget {
+  const RegistrationInputs({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
     return Form(
-      key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

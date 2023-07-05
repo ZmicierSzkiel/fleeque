@@ -14,81 +14,63 @@ class AppColors {
 
 class AppFonts {
   static const xLargeFontPrefsWhite = TextStyle(
-    fontFamily: 'Montserrat',
     fontSize: 35,
-    fontWeight: FontWeight.w900,
+    fontWeight: FontWeight.w700,
     color: AppColors.primaryColor,
   );
   static const xLargeFontPrefsBlack = TextStyle(
-    fontFamily: 'Montserrat',
     fontSize: 35,
-    fontWeight: FontWeight.w900,
+    fontWeight: FontWeight.w700,
     color: AppColors.textPrimaryColor,
   );
   static const largeFontPrefsBlack = TextStyle(
     fontSize: 24.0,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w700,
     height: 1.5,
     color: AppColors.textPrimaryColor,
   );
   static const largeFontPrefsWhite = TextStyle(
     fontSize: 24.0,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w700,
     height: 1.5,
     color: AppColors.primaryColor,
   );
   static const mediumFontPrefsBlack = TextStyle(
     fontSize: 16.0,
     color: AppColors.textPrimaryColor,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
     height: 1.5,
   );
   static const mediumFontPrefsWhite = TextStyle(
     fontSize: 16.0,
     color: AppColors.primaryColor,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
     height: 1.5,
   );
   static const mediumFontPrefsWhiteLink = TextStyle(
     fontSize: 16.0,
     color: AppColors.primaryColor,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
     height: 1.5,
     decoration: TextDecoration.underline,
   );
   static const mediumFontPrefsBlackLink = TextStyle(
     fontSize: 16.0,
     color: AppColors.textPrimaryColor,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
     height: 1.5,
     decoration: TextDecoration.underline,
   );
   static const mediumFontPrefsRedLink = TextStyle(
     fontSize: 16.0,
     color: AppColors.linkColor,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
     height: 1.5,
     decoration: TextDecoration.underline,
   );
   static const smallFontPrefsBlack = TextStyle(
     fontSize: 10.0,
     color: AppColors.textPrimaryColor,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
     height: 1.5,
   );
   static const smallFontPrefsWhite = TextStyle(
     fontSize: 10.0,
     color: AppColors.primaryColor,
-    fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w700,
     height: 1.5,
   );
 }

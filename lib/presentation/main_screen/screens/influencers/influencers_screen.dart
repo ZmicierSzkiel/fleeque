@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core/app_locator.dart';
 
-import 'package:fleeque/domain/repositories/db_repository.dart';
 import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/observe_usecase.dart';
 
@@ -19,17 +18,15 @@ class InfluencersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => InfluencersBloc(
-        getInfluencersListUseCase: GetInfluencersListUseCase(
-          repository: getIt.get<DbRepository>(),
-        ),
-        observeUseCase: ObserveUseCase(
-          repository: getIt.get<DbRepository>(),
-        ),
+        getInfluencersListUseCase: getIt<GetInfluencersListUseCase>(),
+        observeUseCase: getIt<ObserveUseCase>(),
       )
         ..add(
           const GetInfluencersEvent(),
         )
-        ..add(const RenderInfluencersEvent()),
+        ..add(
+          const RenderInfluencersEvent(),
+        ),
       child: BlocBuilder<InfluencersBloc, InfluencersState>(
         builder: (context, state) {
           return InfluencersForm(

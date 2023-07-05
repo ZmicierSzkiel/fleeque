@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:fleeque/core_ui/login_inputs.dart';
 
-class LoginForm extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-  LoginForm({super.key});
+class LoginInputs extends StatelessWidget {
+  const LoginInputs({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

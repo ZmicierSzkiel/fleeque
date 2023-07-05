@@ -15,22 +15,30 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
   final SetFirstLaunchUseCase _setFirstLaunchUseCase;
   final GetUserUseCase _getUserUseCase;
 
-  InitialBloc(
-      {required IsFirstLaunchUseCase isFirstLaunchUseCase,
-      required SetFirstLaunchUseCase setFirstLaunchUseCase,
-      required GetUserUseCase getUserUseCase})
-      : _isFirstLaunchUseCase = isFirstLaunchUseCase,
+  InitialBloc({
+    required IsFirstLaunchUseCase isFirstLaunchUseCase,
+    required SetFirstLaunchUseCase setFirstLaunchUseCase,
+    required GetUserUseCase getUserUseCase,
+  })  : _isFirstLaunchUseCase = isFirstLaunchUseCase,
         _setFirstLaunchUseCase = setFirstLaunchUseCase,
         _getUserUseCase = getUserUseCase,
-        super(InitialState(isFirstLaunch: null, isLoggedIn: false)) {
+        super(
+          InitialState(
+            isFirstLaunch: null,
+            isLoggedIn: false,
+          ),
+        ) {
     on<IsFirstLaunch>(_handleIsFirstLaunch);
   }
 
   Future<void> _handleIsFirstLaunch(
-      IsFirstLaunch event, Emitter<InitialState> emit) async {
+    IsFirstLaunch event,
+    Emitter<InitialState> emit,
+  ) async {
     final User? user = await _getUserUseCase.execute(
       NoParams(),
     );
+
     if (user == null) {
       final bool? isFirstLaunch = await _isFirstLaunchUseCase.execute(
         NoParams(),
@@ -40,15 +48,16 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
           NoParams(),
         );
       }
+
       emit(
-        InitialState(
+        state.copyWith(
           isFirstLaunch: true,
           isLoggedIn: false,
         ),
       );
     } else {
       emit(
-        InitialState(
+        state.copyWith(
           isFirstLaunch: false,
           isLoggedIn: true,
         ),
