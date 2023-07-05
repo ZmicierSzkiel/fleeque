@@ -13,6 +13,9 @@ class InfluencersFilterState {
   final String followersFilter;
   final FilteringStatus status;
   final String message;
+  final List<String> priceRange;
+  final List<String> timeRange;
+  final List<String> followersRange;
 
   const InfluencersFilterState({
     required this.priceFilter,
@@ -21,6 +24,9 @@ class InfluencersFilterState {
     required this.followersFilter,
     this.status = FilteringStatus.loading,
     this.message = '',
+    required this.priceRange,
+    required this.timeRange,
+    required this.followersRange,
   });
 
   InfluencersFilterState copyWith({
@@ -30,6 +36,9 @@ class InfluencersFilterState {
     String? followersFilter,
     FilteringStatus? status,
     String? message,
+    List<String>? priceRange,
+    List<String>? timeRange,
+    List<String>? followersRange,
   }) {
     return InfluencersFilterState(
       priceFilter: priceFilter ?? this.priceFilter,
@@ -38,6 +47,9 @@ class InfluencersFilterState {
       followersFilter: followersFilter ?? this.followersFilter,
       status: status ?? this.status,
       message: message ?? this.message,
+      priceRange: priceRange ?? this.priceRange,
+      timeRange: timeRange ?? this.timeRange,
+      followersRange: followersRange ?? this.followersRange,
     );
   }
 }

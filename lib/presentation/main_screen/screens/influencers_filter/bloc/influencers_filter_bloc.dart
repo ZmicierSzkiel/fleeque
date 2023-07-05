@@ -13,25 +13,6 @@ class InfluencersFilterBloc
   final FilterInfluencersListUseCase _filterInfluencersListUseCase;
   final GetInfluencersListUseCase _getInfluencersListUseCase;
 
-  final List<String> priceRange = [
-    'Select',
-    '0-10',
-    '10-50',
-    '50-100',
-  ];
-  final List<String> timeRange = [
-    'Select',
-    'Newest',
-    'Oldest',
-  ];
-  final List<String> followersRange = [
-    'Select',
-    '<100K followers',
-    '100K to 500K followers',
-    '500K to 1M followers',
-    '>1M followers'
-  ];
-
   InfluencersFilterBloc({
     required FilterInfluencersListUseCase filterInfluencersListUseCase,
     required GetInfluencersListUseCase getInfluencersListUseCase,
@@ -43,6 +24,24 @@ class InfluencersFilterBloc
             timeFilter: '',
             followersFilter: '',
             priceFilter: '',
+            priceRange: [
+              'Select',
+              '0-10',
+              '10-50',
+              '50-100',
+            ],
+            timeRange: [
+              'Select',
+              'Newest',
+              'Oldest',
+            ],
+            followersRange: [
+              'Select',
+              '<100K followers',
+              '100K to 500K followers',
+              '500K to 1M followers',
+              '>1M followers'
+            ],
           ),
         ) {
     on<PriceFilterEvent>(_handlePriceFilterEvent);
@@ -51,18 +50,6 @@ class InfluencersFilterBloc
     on<CountryFilterEvent>(_handleCountryFilterEvent);
     on<FilterDataEvent>(_handleFilterDataEvent);
     on<ResetFilterEvent>(_handleResetFilterEvent);
-  }
-
-  List<String> getPriceRange() {
-    return priceRange;
-  }
-
-  List<String> getTimeRange() {
-    return timeRange;
-  }
-
-  List<String> getFollowersRange() {
-    return followersRange;
   }
 
   void _handlePriceFilterEvent(

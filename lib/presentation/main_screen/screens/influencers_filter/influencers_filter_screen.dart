@@ -20,33 +20,16 @@ class InfluencersFilterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final influencersFilterBloc = InfluencersFilterBloc(
-      filterInfluencersListUseCase: getIt<FilterInfluencersListUseCase>(),
-      getInfluencersListUseCase: getIt<GetInfluencersListUseCase>(),
-    );
-    final priceRange = influencersFilterBloc.getPriceRange();
-    final timeRange = influencersFilterBloc.getTimeRange();
-    final followersRange = influencersFilterBloc.getFollowersRange();
     final List<String> countryRange =
         influencers.map((influencer) => influencer.country).toList();
     countryRange.insert(0, 'Select');
 
     return BlocProvider(
-      create: (context) => influencersFilterBloc,
-      child: BlocBuilder<InfluencersFilterBloc, InfluencersFilterState>(
-        builder: (context, state) {
-          return InfluencersFilterForm(
-            priceRange: priceRange,
-            timeRange: timeRange,
-            followersRange: followersRange,
-            countryRange: countryRange,
-            priceFilterValue: state.priceFilter,
-            timeFilterValue: state.timeFilter,
-            followersFilterValue: state.followersFilter,
-            countryFilterValue: state.countryFilter,
-          );
-        },
+      create: (context) => InfluencersFilterBloc(
+        filterInfluencersListUseCase: getIt<FilterInfluencersListUseCase>(),
+        getInfluencersListUseCase: getIt<GetInfluencersListUseCase>(),
       ),
+      child: InfluencersFilterForm(countryRange: countryRange),
     );
   }
 }
