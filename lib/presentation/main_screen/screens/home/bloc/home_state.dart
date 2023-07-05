@@ -1,11 +1,16 @@
 part of 'home_bloc.dart';
 
-class HomeState {
+class HomeState extends Equatable {
   final List<Influencer> influencers;
 
   const HomeState({
     required this.influencers,
   });
+
+  @override
+  List<Object?> get props => [
+        influencers,
+      ];
 
   HomeState copyWith({
     List<Influencer>? influencers,

@@ -58,7 +58,7 @@ class MainScreenForm extends StatelessWidget {
         selectedIndex: selectedIndex,
         onTap: (index) {
           BlocProvider.of<MainScreenBloc>(context).add(
-            ItemTappedEvent(index),
+            ItemTappedEvent(index: index),
           );
         },
       ),

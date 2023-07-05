@@ -12,11 +12,7 @@ class CarouselState extends Equatable {
   });
 
   @override
-  List<Object> get props => [
-        slideItemTitle,
-        slideDescriptionsList,
-        position,
-      ];
+  List<Object> get props => [slideItemTitle, slideDescriptionsList, position];
 
   CarouselState copyWith({
     String? slideItemTitle,

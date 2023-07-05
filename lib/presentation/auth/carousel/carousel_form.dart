@@ -39,7 +39,7 @@ class CarouselForm extends StatelessWidget {
                       ) {
                         BlocProvider.of<CarouselBloc>(context).add(
                           GetCurrentSlideEvent(
-                            index.toDouble(),
+                            index: index.toDouble(),
                           ),
                         );
                       },

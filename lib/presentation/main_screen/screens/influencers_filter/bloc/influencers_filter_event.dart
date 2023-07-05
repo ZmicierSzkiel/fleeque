@@ -1,33 +1,51 @@
 part of 'influencers_filter_bloc.dart';
 
-abstract class InfluencersFilterEvent {
+sealed class InfluencersFilterEvent extends Equatable {
   const InfluencersFilterEvent();
 }
 
-class CountryFilterEvent extends InfluencersFilterEvent {
+final class CountryFilterEvent extends InfluencersFilterEvent {
   final String country;
 
-  CountryFilterEvent(this.country);
+  const CountryFilterEvent({required this.country});
+
+  @override
+  List<Object?> get props => [country];
 }
 
-class TimeFilterEvent extends InfluencersFilterEvent {
+final class TimeFilterEvent extends InfluencersFilterEvent {
   final String time;
 
-  TimeFilterEvent(this.time);
+  const TimeFilterEvent({required this.time});
+
+  @override
+  List<Object?> get props => [time];
 }
 
-class PriceFilterEvent extends InfluencersFilterEvent {
+final class PriceFilterEvent extends InfluencersFilterEvent {
   final String price;
 
-  PriceFilterEvent(this.price);
+  const PriceFilterEvent({required this.price});
+
+  @override
+  List<Object?> get props => [price];
 }
 
-class FollowersFilterEvent extends InfluencersFilterEvent {
+final class FollowersFilterEvent extends InfluencersFilterEvent {
   final String followers;
 
-  FollowersFilterEvent(this.followers);
+  const FollowersFilterEvent({required this.followers});
+
+  @override
+  List<Object?> get props => [followers];
 }
 
-class FilterDataEvent extends InfluencersFilterEvent {}
+final class FilterDataEvent extends InfluencersFilterEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class ResetFilterEvent extends InfluencersFilterEvent {}
+final class ResetFilterEvent extends InfluencersFilterEvent {
+  @override
+  List<Object?> get props => [];
+}

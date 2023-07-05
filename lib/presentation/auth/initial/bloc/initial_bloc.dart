@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core/use_case.dart';
@@ -23,7 +24,7 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
         _setFirstLaunchUseCase = setFirstLaunchUseCase,
         _getUserUseCase = getUserUseCase,
         super(
-          InitialState(
+          const InitialState(
             isFirstLaunch: null,
             isLoggedIn: false,
           ),

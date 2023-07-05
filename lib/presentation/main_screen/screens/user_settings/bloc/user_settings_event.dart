@@ -1,9 +1,12 @@
 part of 'user_settings_bloc.dart';
 
-abstract class UserSettingsEvent {
+sealed class UserSettingsEvent extends Equatable {
   const UserSettingsEvent();
 }
 
-class SignOutPressedEvent extends UserSettingsEvent {
+final class SignOutPressedEvent extends UserSettingsEvent {
   const SignOutPressedEvent();
+
+  @override
+  List<Object?> get props => [];
 }

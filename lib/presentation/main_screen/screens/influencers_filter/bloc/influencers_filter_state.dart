@@ -6,7 +6,7 @@ enum FilteringStatus {
   error,
 }
 
-class InfluencersFilterState {
+class InfluencersFilterState extends Equatable {
   final String priceFilter;
   final String timeFilter;
   final String countryFilter;
@@ -52,4 +52,17 @@ class InfluencersFilterState {
       followersRange: followersRange ?? this.followersRange,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        priceFilter,
+        timeFilter,
+        countryFilter,
+        followersFilter,
+        status,
+        message,
+        priceRange,
+        timeRange,
+        followersRange,
+      ];
 }

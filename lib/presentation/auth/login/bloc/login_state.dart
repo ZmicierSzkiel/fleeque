@@ -6,7 +6,7 @@ enum LoginStatus {
   loading,
 }
 
-class LoginState {
+class LoginState extends Equatable {
   const LoginState({
     this.email = '',
     this.password = '',
@@ -32,4 +32,12 @@ class LoginState {
       message: message ?? this.message,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        email,
+        password,
+        status,
+        message,
+      ];
 }

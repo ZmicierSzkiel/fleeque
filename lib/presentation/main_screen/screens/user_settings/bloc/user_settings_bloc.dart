@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:fleeque/core/use_case.dart';
 import 'package:fleeque/domain/usecases/auth_usecases/sign_out_user_usecase.dart';
 

@@ -1,6 +1,6 @@
 part of 'main_screen_bloc.dart';
 
-final class MainScreenState {
+final class MainScreenState extends Equatable {
   final int selectedIndex;
 
   const MainScreenState({
@@ -14,4 +14,9 @@ final class MainScreenState {
       selectedIndex: selectedIndex ?? this.selectedIndex,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        selectedIndex,
+      ];
 }

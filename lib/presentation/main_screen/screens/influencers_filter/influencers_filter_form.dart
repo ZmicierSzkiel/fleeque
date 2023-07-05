@@ -49,7 +49,7 @@ class InfluencersFilterForm extends StatelessWidget {
                     labelText: 'Price',
                     onChanged: (value) {
                       BlocProvider.of<InfluencersFilterBloc>(context)
-                          .add(PriceFilterEvent(value!));
+                          .add(PriceFilterEvent(price: value!));
                     },
                   ),
                   InfluencerDropdownButton(
@@ -58,7 +58,7 @@ class InfluencersFilterForm extends StatelessWidget {
                     labelText: 'Time',
                     onChanged: (value) {
                       BlocProvider.of<InfluencersFilterBloc>(context)
-                          .add(TimeFilterEvent(value!));
+                          .add(TimeFilterEvent(time: value!));
                     },
                   ),
                   InfluencerDropdownButton(
@@ -67,7 +67,7 @@ class InfluencersFilterForm extends StatelessWidget {
                     labelText: 'Popularity',
                     onChanged: (value) {
                       BlocProvider.of<InfluencersFilterBloc>(context)
-                          .add(FollowersFilterEvent(value!));
+                          .add(FollowersFilterEvent(followers: value!));
                     },
                   ),
                   InfluencerDropdownButton(
@@ -76,7 +76,7 @@ class InfluencersFilterForm extends StatelessWidget {
                     labelText: 'Country',
                     onChanged: (value) {
                       BlocProvider.of<InfluencersFilterBloc>(context)
-                          .add(CountryFilterEvent(value!));
+                          .add(CountryFilterEvent(country: value!));
                     },
                   ),
                   TextButton(

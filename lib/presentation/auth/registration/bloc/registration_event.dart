@@ -1,25 +1,34 @@
 part of 'registration_bloc.dart';
 
-abstract class RegistrationEvent {
+sealed class RegistrationEvent extends Equatable {
   const RegistrationEvent();
 }
 
-class RegistrationButtonPressedEvent extends RegistrationEvent {
+final class RegistrationButtonPressedEvent extends RegistrationEvent {
   const RegistrationButtonPressedEvent();
+
+  @override
+  List<Object?> get props => [];
 }
 
-class RegistrationEmailChangedEvent extends RegistrationEvent {
+final class RegistrationEmailChangedEvent extends RegistrationEvent {
   const RegistrationEmailChangedEvent({
     required this.email,
   });
 
   final String email;
+
+  @override
+  List<Object?> get props => [email];
 }
 
-class RegistrationPasswordChangedEvent extends RegistrationEvent {
+final class RegistrationPasswordChangedEvent extends RegistrationEvent {
   const RegistrationPasswordChangedEvent({
     required this.password,
   });
 
   final String password;
+
+  @override
+  List<Object?> get props => [password];
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 
-class Influencer {
+class Influencer extends Equatable {
   const Influencer({
     required this.name,
     required this.image,
@@ -18,4 +19,15 @@ class Influencer {
   final String country;
   final int price;
   final Timestamp time;
+
+  @override
+  List<Object?> get props => [
+        name,
+        image,
+        followers,
+        posts,
+        country,
+        price,
+        time,
+      ];
 }
