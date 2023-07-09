@@ -5,7 +5,9 @@ import 'package:fleeque/presentation/auth/carousel/bloc/carousel_bloc.dart';
 import 'package:fleeque/presentation/auth/carousel/carousel_form.dart';
 
 class CarouselScreen extends StatelessWidget {
-  const CarouselScreen({super.key});
+  const CarouselScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

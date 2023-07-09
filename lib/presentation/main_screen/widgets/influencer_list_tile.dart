@@ -13,7 +13,6 @@ class InfluencerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final double millionFollowers = influencer.followers * 0.001;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
       child: ListTile(

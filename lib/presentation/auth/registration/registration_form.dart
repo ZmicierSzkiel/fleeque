@@ -41,7 +41,7 @@ class RegistrationForm extends StatelessWidget {
                   style: AppFonts.mediumFontPrefsRedLink,
                 ),
                 onPressed: () {
-                  Navigator.pop(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const LoginScreen(),

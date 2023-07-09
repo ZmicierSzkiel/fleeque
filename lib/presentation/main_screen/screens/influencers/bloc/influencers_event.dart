@@ -9,5 +9,9 @@ final class GetInfluencersEvent extends InfluencersEvent {
 }
 
 final class RenderInfluencersEvent extends InfluencersEvent {
-  const RenderInfluencersEvent();
+  final List<Influencer> influencers;
+
+  const RenderInfluencersEvent({
+    required this.influencers,
+  });
 }

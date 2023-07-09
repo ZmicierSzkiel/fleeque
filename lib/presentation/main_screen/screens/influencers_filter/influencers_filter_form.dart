@@ -1,43 +1,43 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
 import 'package:fleeque/core_ui/secondary_app_bar.dart';
+
 import 'package:fleeque/presentation/main_screen/screens/influencers_filter/bloc/influencers_filter_bloc.dart';
 import 'package:fleeque/presentation/main_screen/screens/influencers_filter/widgets/influencer_dropdown_button.dart';
 
 class InfluencersFilterForm extends StatelessWidget {
-  final List<String> countryRange;
-
   const InfluencersFilterForm({
     Key? key,
-    required this.countryRange,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<InfluencersFilterBloc, InfluencersFilterState>(
       builder: (context, state) {
+        final List<String> countryRange = state.influencers
+            .map(
+              (influencer) => influencer.country,
+            )
+            .toList();
+        countryRange.insert(0, 'Select');
+
         return Scaffold(
           appBar: const SecondaryAppBar(
             title: '',
           ),
           body: Container(
-            decoration: const BoxDecoration(
-              color: AppColors.textPrimaryColor,
-            ),
+            color: AppColors.textPrimaryColor,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 30.0,
-                    ),
                     child: const Text(
                       'Sort by',
                       style: AppFonts.largeFontPrefsWhite,
@@ -96,43 +96,40 @@ class InfluencersFilterForm extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 30.0,
-                    ),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: const MaterialStatePropertyAll(
-                            AppColors.primaryColor),
-                        minimumSize: const MaterialStatePropertyAll(
-                          Size(
-                            double.infinity,
-                            0,
-                          ),
-                        ),
-                        overlayColor: MaterialStatePropertyAll(
-                          AppColors.textPrimaryColor.withOpacity(0.1),
-                        ),
-                        shape: MaterialStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: const MaterialStatePropertyAll(
+                          AppColors.primaryColor),
+                      minimumSize: const MaterialStatePropertyAll(
+                        Size(
+                          double.infinity,
+                          0,
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: Text(
-                          'Filter'.toUpperCase(),
-                          style: AppFonts.mediumFontPrefsBlack,
+                      overlayColor: MaterialStatePropertyAll(
+                        AppColors.textPrimaryColor.withOpacity(0.1),
+                      ),
+                      shape: MaterialStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
                         ),
                       ),
-                      onPressed: () {
-                        BlocProvider.of<InfluencersFilterBloc>(context).add(
-                          FilterDataEvent(),
-                        );
-                        Navigator.pop(context);
-                      },
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20.0,
+                      ),
+                      child: Text(
+                        'Filter'.toUpperCase(),
+                        style: AppFonts.mediumFontPrefsBlack,
+                      ),
+                    ),
+                    onPressed: () {
+                      BlocProvider.of<InfluencersFilterBloc>(context).add(
+                        FilterDataEvent(),
+                      );
+                      Navigator.pop(context);
+                    },
                   ),
                 ],
               ),

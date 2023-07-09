@@ -11,13 +11,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => MainScreenBloc(),
-      child: BlocBuilder<MainScreenBloc, MainScreenState>(
-        builder: (context, state) {
-          return MainScreenForm(
-            selectedIndex: state.selectedIndex,
-          );
-        },
-      ),
+      child: const MainScreenForm(),
     );
   }
 }

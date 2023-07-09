@@ -18,7 +18,6 @@ class CarouselForm extends StatelessWidget {
       builder: (context, state) {
         const double dotsCount = 3;
         final bool isLastSlide = state.position == dotsCount - 1;
-
         return Scaffold(
           body: Column(
             children: [

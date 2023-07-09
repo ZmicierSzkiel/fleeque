@@ -20,7 +20,6 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
         icon: const Icon(Icons.arrow_back_ios),
         label: const Text('Back'),
         style: ElevatedButton.styleFrom(
-          elevation: 0,
           backgroundColor: Colors.transparent,
         ),
       ),

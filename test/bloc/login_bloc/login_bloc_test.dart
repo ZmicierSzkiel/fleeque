@@ -34,7 +34,7 @@ void main() {
       );
 
       blocTest<LoginBloc, LoginState>(
-        'emits [LoginState.loading, LoginState.success] when login is successful',
+        'emits LoginState.success when login is successful',
         build: () => loginBloc,
         act: (bloc) {
           bloc.add(
@@ -59,7 +59,7 @@ void main() {
       );
 
       blocTest<LoginBloc, LoginState>(
-        'emits [LoginState(email: "test@example.com")] when LoginEmailChangedEvent is added',
+        'emits LoginState(email: "test@example.com") when LoginEmailChangedEvent is added',
         build: () => loginBloc,
         act: (bloc) => bloc.add(
           const LoginEmailChangedEvent(email: 'test@example.com'),
@@ -72,7 +72,7 @@ void main() {
       );
 
       blocTest<LoginBloc, LoginState>(
-        'emits [LoginState(password: "password")] when LoginPasswordChangedEvent is added',
+        'emits LoginState(password: "password") when LoginPasswordChangedEvent is added',
         build: () => loginBloc,
         act: (bloc) => bloc.add(
           const LoginPasswordChangedEvent(password: 'password'),

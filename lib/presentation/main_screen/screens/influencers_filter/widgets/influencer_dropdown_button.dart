@@ -36,7 +36,6 @@ class InfluencerDropdownButton extends StatelessWidget {
             value: filterSelectedValue.isNotEmpty
                 ? filterSelectedValue
                 : valueList[0],
-            elevation: 10,
             icon: const Visibility(
               visible: false,
               child: Icon(Icons.arrow_downward),

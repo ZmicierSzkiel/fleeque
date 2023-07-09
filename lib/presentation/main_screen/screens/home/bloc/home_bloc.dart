@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,6 +16,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetInfluencersListUseCase _getInfluencersListUseCase;
   final ObserveUseCase _observeUseCase;
 
+  StreamSubscription<List<Influencer>>? _subscription;
+
   HomeBloc({
     required GetInfluencersListUseCase getInfluencersListUseCase,
     required ObserveUseCase observeUseCase,
@@ -24,6 +28,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             influencers: [],
           ),
         ) {
+    _subscription ??= _observeUseCase.execute(NoParams()).listen(
+      (list) {
+        add(RenderInfluencersEvent(influencers: list));
+      },
+    );
     on<GetInfluencersEvent>(_handleGetInfluencersEvent);
     on<RenderInfluencersEvent>(_handleRenderInfluencersEvent);
   }
@@ -39,14 +48,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     RenderInfluencersEvent event,
     Emitter<HomeState> emit,
   ) async {
-    final Stream<List<Influencer>> streamedInfluencers =
-        _observeUseCase.execute(NoParams());
-    await for (final List<Influencer> influencers in streamedInfluencers) {
-      emit(
-        state.copyWith(
-          influencers: influencers,
-        ),
-      );
-    }
+    emit(
+      state.copyWith(
+        influencers: event.influencers,
+      ),
+    );
+  }
+
+  @override
+  Future<void> close() {
+    _subscription?.cancel();
+    return super.close();
+  }
+
+  void dispose() {
+    _subscription?.cancel();
   }
 }

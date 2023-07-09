@@ -16,6 +16,7 @@ class InfluencersFilterState extends Equatable {
   final List<String> priceRange;
   final List<String> timeRange;
   final List<String> followersRange;
+  final List<Influencer> influencers;
 
   const InfluencersFilterState({
     required this.priceFilter,
@@ -27,6 +28,7 @@ class InfluencersFilterState extends Equatable {
     required this.priceRange,
     required this.timeRange,
     required this.followersRange,
+    required this.influencers,
   });
 
   InfluencersFilterState copyWith({
@@ -39,6 +41,7 @@ class InfluencersFilterState extends Equatable {
     List<String>? priceRange,
     List<String>? timeRange,
     List<String>? followersRange,
+    List<Influencer>? influencers,
   }) {
     return InfluencersFilterState(
       priceFilter: priceFilter ?? this.priceFilter,
@@ -50,19 +53,23 @@ class InfluencersFilterState extends Equatable {
       priceRange: priceRange ?? this.priceRange,
       timeRange: timeRange ?? this.timeRange,
       followersRange: followersRange ?? this.followersRange,
+      influencers: influencers ?? this.influencers,
     );
   }
 
   @override
-  List<Object?> get props => [
-        priceFilter,
-        timeFilter,
-        countryFilter,
-        followersFilter,
-        status,
-        message,
-        priceRange,
-        timeRange,
-        followersRange,
-      ];
+  List<Object> get props {
+    return [
+      priceFilter,
+      timeFilter,
+      countryFilter,
+      followersFilter,
+      status,
+      message,
+      priceRange,
+      timeRange,
+      followersRange,
+      influencers,
+    ];
+  }
 }

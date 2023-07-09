@@ -35,7 +35,7 @@ void main() {
       );
 
       blocTest<RegistrationBloc, RegistrationState>(
-        'emits [RegistrationState.loading, RegistrationState.success] when registration is successful',
+        'emits RegistrationState.success when registration is successful',
         build: () => registrationBloc,
         act: (bloc) {
           bloc.add(
@@ -60,7 +60,7 @@ void main() {
       );
 
       blocTest<RegistrationBloc, RegistrationState>(
-        'emits [RegistrationState(email: "test@example.com")] when RegistrationEmailChangedEvent is added',
+        'emits RegistrationState(email: "test@example.com") when RegistrationEmailChangedEvent is added',
         build: () => registrationBloc,
         act: (bloc) => bloc.add(
           const RegistrationEmailChangedEvent(email: 'test@example.com'),
@@ -73,7 +73,7 @@ void main() {
       );
 
       blocTest<RegistrationBloc, RegistrationState>(
-        'emits [RegistrationState(password: "password")] when RegistrationPasswordChangedEvent is added',
+        'emits RegistrationState(password: "password") when RegistrationPasswordChangedEvent is added',
         build: () => registrationBloc,
         act: (bloc) => bloc
             .add(const RegistrationPasswordChangedEvent(password: 'password')),

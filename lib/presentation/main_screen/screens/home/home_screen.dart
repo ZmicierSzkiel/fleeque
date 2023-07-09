@@ -10,7 +10,9 @@ import 'package:fleeque/presentation/main_screen/screens/home/bloc/home_bloc.dar
 import 'package:fleeque/presentation/main_screen/screens/home/home_form.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +20,10 @@ class HomeScreen extends StatelessWidget {
       create: (context) => HomeBloc(
         getInfluencersListUseCase: getIt<GetInfluencersListUseCase>(),
         observeUseCase: getIt<ObserveUseCase>(),
-      )
-        ..add(
+      )..add(
           const GetInfluencersEvent(),
-        )
-        ..add(
-          const RenderInfluencersEvent(),
         ),
-      child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          return HomeForm(
-            influencers: state.influencers,
-          );
-        },
-      ),
+      child: const HomeForm(),
     );
   }
 }

@@ -41,6 +41,7 @@ class HomeCarouselTile extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 10.0),
                           child: Text(
                             influencer.name,
+                            key: const Key('homeScreenInfluencerName'),
                             style: AppFonts.mediumFontPrefsWhite,
                           ),
                         ),
@@ -68,6 +69,7 @@ class HomeCarouselTile extends StatelessWidget {
                         alignment: Alignment.bottomLeft,
                         child: Text(
                           influencer.name,
+                          key: const Key('influencersScreenInfluencerName'),
                           style: AppFonts.largeFontPrefsWhite,
                         ),
                       ),

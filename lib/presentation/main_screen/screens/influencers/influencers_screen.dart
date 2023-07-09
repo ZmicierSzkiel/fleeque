@@ -1,9 +1,9 @@
+import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core/app_locator.dart';
 
-import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/observe_usecase.dart';
 
 import 'package:fleeque/presentation/main_screen/screens/influencers/bloc/influencers_bloc.dart';
@@ -20,20 +20,10 @@ class InfluencersScreen extends StatelessWidget {
       create: (context) => InfluencersBloc(
         getInfluencersListUseCase: getIt<GetInfluencersListUseCase>(),
         observeUseCase: getIt<ObserveUseCase>(),
-      )
-        ..add(
+      )..add(
           const GetInfluencersEvent(),
-        )
-        ..add(
-          const RenderInfluencersEvent(),
         ),
-      child: BlocBuilder<InfluencersBloc, InfluencersState>(
-        builder: (context, state) {
-          return InfluencersForm(
-            influencers: state.influencers,
-          );
-        },
-      ),
+      child: const InfluencersForm(),
     );
   }
 }

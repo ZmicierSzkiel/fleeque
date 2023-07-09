@@ -49,3 +49,14 @@ final class ResetFilterEvent extends InfluencersFilterEvent {
   @override
   List<Object?> get props => [];
 }
+
+final class RenderInfluencersEvent extends InfluencersFilterEvent {
+  final List<Influencer> influencers;
+
+  const RenderInfluencersEvent({
+    required this.influencers,
+  });
+
+  @override
+  List<Object?> get props => [influencers];
+}

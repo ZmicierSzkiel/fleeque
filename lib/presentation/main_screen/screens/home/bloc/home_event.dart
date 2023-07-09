@@ -12,7 +12,10 @@ final class GetInfluencersEvent extends HomeEvent {
 }
 
 final class RenderInfluencersEvent extends HomeEvent {
-  const RenderInfluencersEvent();
+  final List<Influencer> influencers;
+  const RenderInfluencersEvent({
+    required this.influencers,
+  });
 
   @override
   List<Object?> get props => [];
