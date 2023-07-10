@@ -7,11 +7,6 @@ class HomeState extends Equatable {
     required this.influencers,
   });
 
-  @override
-  List<Object?> get props => [
-        influencers,
-      ];
-
   HomeState copyWith({
     List<Influencer>? influencers,
   }) {
@@ -19,4 +14,7 @@ class HomeState extends Equatable {
       influencers: influencers ?? this.influencers,
     );
   }
+
+  @override
+  List<Object?> get props => [influencers];
 }

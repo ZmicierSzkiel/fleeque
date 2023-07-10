@@ -1,11 +1,14 @@
 part of 'influencers_bloc.dart';
 
-sealed class InfluencersEvent {
+sealed class InfluencersEvent extends Equatable {
   const InfluencersEvent();
 }
 
 final class GetInfluencersEvent extends InfluencersEvent {
   const GetInfluencersEvent();
+
+  @override
+  List<Object?> get props => [];
 }
 
 final class RenderInfluencersEvent extends InfluencersEvent {
@@ -14,4 +17,7 @@ final class RenderInfluencersEvent extends InfluencersEvent {
   const RenderInfluencersEvent({
     required this.influencers,
   });
+
+  @override
+  List<Object?> get props => [influencers];
 }

@@ -5,7 +5,6 @@ import 'package:fleeque/core/app_locator.dart';
 
 import 'package:fleeque/domain/usecases/auth_usecases/register_user_usecase.dart';
 
-import 'package:fleeque/presentation/main_screen/main_screen.dart';
 import 'package:fleeque/presentation/auth/registration/bloc/registration_bloc.dart';
 import 'package:fleeque/presentation/auth/registration/registration_form.dart';
 
@@ -18,25 +17,7 @@ class RegistrationScreen extends StatelessWidget {
       create: (context) => RegistrationBloc(
         registerUserUseCase: getIt<RegisterUserUseCase>(),
       ),
-      child: BlocBuilder<RegistrationBloc, RegistrationState>(
-        builder: (context, state) {
-          return BlocListener<RegistrationBloc, RegistrationState>(
-            listener: (context, state) {
-              if (state.status == RegistrationStatus.success) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MainScreen()),
-                );
-              } else if (state.status == RegistrationStatus.failure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
-                );
-              }
-            },
-            child: const RegistrationForm(),
-          );
-        },
-      ),
+      child: const RegistrationForm(),
     );
   }
 }

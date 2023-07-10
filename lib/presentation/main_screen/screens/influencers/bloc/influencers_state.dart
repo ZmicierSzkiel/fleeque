@@ -1,6 +1,6 @@
 part of 'influencers_bloc.dart';
 
-class InfluencersState {
+class InfluencersState extends Equatable {
   final List<Influencer> influencers;
   const InfluencersState({
     required this.influencers,
@@ -13,4 +13,7 @@ class InfluencersState {
       influencers: influencers ?? this.influencers,
     );
   }
+
+  @override
+  List<Object?> get props => [influencers];
 }

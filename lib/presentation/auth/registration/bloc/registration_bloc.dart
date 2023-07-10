@@ -28,8 +28,9 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   }
 
   Future<void> _handleRegistrationWithEmailAndPasswordEvent(
-      RegistrationButtonPressedEvent event,
-      Emitter<RegistrationState> emit) async {
+    RegistrationButtonPressedEvent event,
+    Emitter<RegistrationState> emit,
+  ) async {
     try {
       final RegisterUserRequest registerUserRequest = RegisterUserRequest(
         email: state.email,

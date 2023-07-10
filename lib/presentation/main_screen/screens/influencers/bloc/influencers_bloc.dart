@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:fleeque/core/use_case.dart';
 import 'package:fleeque/domain/entities/influencer.dart';
 import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';

@@ -7,35 +7,33 @@ class LoginInputs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          EmailInput(
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "Please enter your email";
-              }
-              return value;
-            },
-            hintText: "Email".toUpperCase(),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 5),
-          ),
-          PassInput(
-            obscureText: true,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "Please enter your password";
-              }
-              return value;
-            },
-            hintText: "Password".toUpperCase(),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        EmailInput(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter your email";
+            }
+            return value;
+          },
+          hintText: "Email".toUpperCase(),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 5),
+        ),
+        PassInput(
+          obscureText: true,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter your password";
+            }
+            return value;
+          },
+          hintText: "Password".toUpperCase(),
+        ),
+      ],
     );
   }
 }

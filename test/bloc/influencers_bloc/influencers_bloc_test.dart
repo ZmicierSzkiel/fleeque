@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,7 +7,7 @@ import 'package:fleeque/core/use_case.dart';
 import 'package:fleeque/domain/entities/influencer.dart';
 import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/observe_usecase.dart';
-import 'package:fleeque/presentation/main_screen/screens/home/bloc/home_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers/bloc/influencers_bloc.dart';
 
 class MockGetInfluencersListUseCase extends Mock
     implements GetInfluencersListUseCase {
@@ -38,13 +36,13 @@ class MockObserveUseCase extends Mock implements ObserveUseCase {
 
 void main() {
   group(
-    'HomeBloc',
+    'InfluencersBloc',
     () {
-      late HomeBloc homeBloc;
+      late InfluencersBloc influencersBloc;
 
       setUp(
         () {
-          homeBloc = HomeBloc(
+          influencersBloc = InfluencersBloc(
             getInfluencersListUseCase: MockGetInfluencersListUseCase(),
             observeUseCase: MockObserveUseCase(),
           );
@@ -53,7 +51,7 @@ void main() {
 
       tearDown(
         () {
-          homeBloc.close();
+          influencersBloc.close();
         },
       );
 
@@ -61,11 +59,9 @@ void main() {
         'Initial state should be correct',
         () {
           expect(
-            homeBloc.state,
+            influencersBloc.state,
             equals(
-              const HomeState(
-                influencers: [],
-              ),
+              const InfluencersState(influencers: []),
             ),
           );
         },
@@ -73,14 +69,14 @@ void main() {
 
       blocTest(
         'Emits correct state for GetInfluencersEvent',
-        build: () => homeBloc,
+        build: () => influencersBloc,
         act: (bloc) => bloc.add(const GetInfluencersEvent()),
         expect: () => [],
       );
 
-      blocTest<HomeBloc, HomeState>(
+      blocTest<InfluencersBloc, InfluencersState>(
         'Emits correct states for RenderInfluencersEvent',
-        build: () => homeBloc,
+        build: () => influencersBloc,
         act: (bloc) {
           bloc.add(
             const RenderInfluencersEvent(
@@ -89,15 +85,15 @@ void main() {
           );
         },
         expect: () => [
-          const HomeState(
+          const InfluencersState(
             influencers: [],
           ),
         ],
       );
 
-      blocTest<HomeBloc, HomeState>(
+      blocTest<InfluencersBloc, InfluencersState>(
         'Emits correct state and cancels/disposes the stream when closed',
-        build: () => homeBloc,
+        build: () => influencersBloc,
         act: (bloc) => bloc.close(),
         expect: () => [],
       );

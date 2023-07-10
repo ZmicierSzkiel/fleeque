@@ -17,14 +17,15 @@ void main() {
   group(
     'RegisterBloc',
     () {
-      late RegisterUserUseCase registerUserUseCase;
+      late RegisterUserUseCase mockRegisterUserUseCase;
       late RegistrationBloc registrationBloc;
 
       setUp(
         () {
-          registerUserUseCase = MockRegisterUserUseCase();
-          registrationBloc =
-              RegistrationBloc(registerUserUseCase: registerUserUseCase);
+          mockRegisterUserUseCase = MockRegisterUserUseCase();
+          registrationBloc = RegistrationBloc(
+            registerUserUseCase: mockRegisterUserUseCase,
+          );
         },
       );
 
@@ -75,8 +76,9 @@ void main() {
       blocTest<RegistrationBloc, RegistrationState>(
         'emits RegistrationState(password: "password") when RegistrationPasswordChangedEvent is added',
         build: () => registrationBloc,
-        act: (bloc) => bloc
-            .add(const RegistrationPasswordChangedEvent(password: 'password')),
+        act: (bloc) => bloc.add(
+          const RegistrationPasswordChangedEvent(password: 'password'),
+        ),
         expect: () => [
           const RegistrationState(
             password: 'password',
