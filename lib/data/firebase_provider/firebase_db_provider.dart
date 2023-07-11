@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:fleeque/data/models/influencer_model.dart';
 import 'package:fleeque/data/models/order_details_model.dart';
@@ -106,8 +107,9 @@ class FirebaseDbProvider {
   Future<void> sendOrderToDB(
     OrderDetails params,
   ) async {
+    final String userId = FirebaseAuth.instance.currentUser!.uid;
     await _db
-        .collection('pre_orders')
+        .collection('orders')
         .withConverter(
           fromFirestore: (snapshot, _) => OrderDetailsMapper.fromJson(
             snapshot.data()!,
@@ -119,7 +121,19 @@ class FirebaseDbProvider {
             influencerName: params.influencerName,
             orderPrice: params.orderPrice,
             orderDescription: params.orderDescription,
+            userId: userId,
           ),
         );
+  }
+
+  Future<List<OrderDetailsMapper>> getOrderFromDB() async {
+    final snapshot = await _db.collection('orders').get();
+    return snapshot.docs.map(
+      (QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+        return OrderDetailsMapper.fromJson(
+          doc.data(),
+        );
+      },
+    ).toList();
   }
 }

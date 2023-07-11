@@ -92,6 +92,7 @@ class InfluencersPageBloc
         influencerName: state.influencerName,
         orderDescription: state.orderDescription,
         orderPrice: state.orderPrice,
+        userId: '',
       ),
     );
   }

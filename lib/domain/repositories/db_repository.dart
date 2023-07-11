@@ -7,4 +7,5 @@ abstract class DbRepository {
   Stream<List<Influencer>> observe();
   Future<void> filterInfluencersList(FilteredInfluencer params);
   Future<void> sendOrder(OrderDetails params);
+  Future<List<OrderDetails>> getOrder();
 }

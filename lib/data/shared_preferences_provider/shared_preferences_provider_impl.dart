@@ -43,13 +43,11 @@ class SharedPreferencesProviderImpl implements SharedPreferencesProvider {
   @override
   Future<User?> getUser() async {
     final String? prefUser = prefs.getString(_userKey);
-    if (prefUser != null) {
-      return UserMapper.fromJson(
-        jsonDecode(prefUser),
-      );
-    } else {
-      return null;
-    }
+    return prefUser != null
+        ? UserMapper.fromJson(
+            jsonDecode(prefUser),
+          )
+        : null;
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:fleeque/data/models/user_model.dart';
+
 import 'package:fleeque/domain/entities/user.dart';
 
 abstract class SharedPreferencesProvider {

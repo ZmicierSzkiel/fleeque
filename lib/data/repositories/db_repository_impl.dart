@@ -44,6 +44,12 @@ class DbRepositoryImpl implements DbRepository {
     await _dbProvider.sendOrderToDB(params);
   }
 
+  @override
+  Future<List<OrderDetails>> getOrder() async {
+    final List<OrderDetails> orderDetails = await _dbProvider.getOrderFromDB();
+    return orderDetails;
+  }
+
   void dispose() {
     _streamController.close();
   }

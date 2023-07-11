@@ -6,7 +6,10 @@ class UserMapper extends User {
   const UserMapper({
     required String email,
     required String id,
-  }) : super(email: email, id: id);
+  }) : super(
+          email: email,
+          id: id,
+        );
 
   static UserMapper fromFirebaseUser(fb_auth.User fbUser) {
     return UserMapper(
@@ -22,5 +25,8 @@ class UserMapper extends User {
     );
   }
 
-  Map<String, dynamic> toJson() => {'email': email, 'id': id};
+  Map<String, dynamic> toJson() => {
+        'email': email,
+        'id': id,
+      };
 }

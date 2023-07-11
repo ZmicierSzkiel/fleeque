@@ -5,10 +5,12 @@ class OrderDetailsMapper extends OrderDetails {
     required String influencerName,
     required int orderPrice,
     required String orderDescription,
+    required String userId,
   }) : super(
           influencerName: influencerName,
           orderPrice: orderPrice,
           orderDescription: orderDescription,
+          userId: userId,
         );
 
   static OrderDetailsMapper fromJson(Map<String, dynamic> json) {
@@ -16,6 +18,7 @@ class OrderDetailsMapper extends OrderDetails {
       influencerName: json['influencer_name'],
       orderPrice: json['order_price'],
       orderDescription: json['order_description'],
+      userId: json['user_id'],
     );
   }
 
@@ -24,6 +27,7 @@ class OrderDetailsMapper extends OrderDetails {
       'influencer_name': influencerName,
       'order_price': orderPrice,
       'order_description': orderDescription,
+      'user_id': userId,
     };
   }
 }
