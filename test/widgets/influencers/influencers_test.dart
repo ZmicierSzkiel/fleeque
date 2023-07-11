@@ -23,7 +23,9 @@ class MockInfluencersBloc extends MockBloc<InfluencersEvent, InfluencersState>
             followers: 1000,
             posts: 1000,
             country: 'USA',
-            price: 30,
+            firstOptionPrice: 30,
+            secondOptionPrice: 30,
+            extraOptionPrice: 30,
             time: Timestamp.fromDate(
               DateTime(2022),
             ),
@@ -34,7 +36,9 @@ class MockInfluencersBloc extends MockBloc<InfluencersEvent, InfluencersState>
             followers: 500,
             posts: 500,
             country: 'Netherlands',
-            price: 70,
+            firstOptionPrice: 70,
+            secondOptionPrice: 70,
+            extraOptionPrice: 70,
             time: Timestamp.fromDate(
               DateTime(2021),
             ),
@@ -61,7 +65,9 @@ void main() {
       followers: 1000,
       posts: 1000,
       country: 'USA',
-      price: 30,
+      firstOptionPrice: 30,
+      secondOptionPrice: 30,
+      extraOptionPrice: 30,
       time: Timestamp.fromDate(
         DateTime(2022),
       ),
@@ -72,7 +78,9 @@ void main() {
       followers: 500,
       posts: 500,
       country: 'Netherlands',
-      price: 70,
+      firstOptionPrice: 70,
+      secondOptionPrice: 70,
+      extraOptionPrice: 70,
       time: Timestamp.fromDate(
         DateTime(2021),
       ),

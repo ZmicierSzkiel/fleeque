@@ -47,7 +47,7 @@ class FirebaseDbProvider {
               final List<String> priceRange = priceParams.split('-');
               final int minPrice = int.parse(priceRange[0]);
               final int maxPrice = int.parse(priceRange[1]);
-              final int price = doc.get('price');
+              final int price = doc.get('first_option_price');
               return price >= minPrice && price <= maxPrice;
             },
           ).toList()

@@ -8,7 +8,9 @@ class InfluencerMapper extends Influencer {
     required int posts,
     required String image,
     required String country,
-    required int price,
+    required int firstOptionPrice,
+    required int secondOptionPrice,
+    required int extraOptionPrice,
     required Timestamp time,
   }) : super(
           name: name,
@@ -16,7 +18,9 @@ class InfluencerMapper extends Influencer {
           posts: posts,
           image: image,
           country: country,
-          price: price,
+          firstOptionPrice: firstOptionPrice,
+          secondOptionPrice: secondOptionPrice,
+          extraOptionPrice: extraOptionPrice,
           time: time,
         );
 
@@ -27,7 +31,9 @@ class InfluencerMapper extends Influencer {
       posts: json['posts'],
       image: json['image'],
       country: json['country'],
-      price: json['price'],
+      firstOptionPrice: json['first_option_price'],
+      secondOptionPrice: json['second_option_price'],
+      extraOptionPrice: json['extra_option_price'],
       time: json['time'],
     );
   }
@@ -38,7 +44,9 @@ class InfluencerMapper extends Influencer {
         'posts': posts,
         'image': image,
         'country': country,
-        'price': price,
+        'firstOptionPrice': firstOptionPrice,
+        'secondOptionPrice': secondOptionPrice,
+        'extraOptionPrice': extraOptionPrice,
         'time': time,
       };
 }

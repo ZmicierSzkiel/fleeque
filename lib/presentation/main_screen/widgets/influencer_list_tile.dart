@@ -1,3 +1,4 @@
+import 'package:fleeque/presentation/main_screen/screens/influencers_page/influencers_page_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
@@ -17,15 +18,26 @@ class InfluencerListTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
       child: ListTile(
         leading: SizedBox(
-            width: 60.0,
-            height: 60.0,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.network(
-                influencer.image,
-                fit: BoxFit.cover,
+          width: 60.0,
+          height: 60.0,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Image.network(
+              influencer.image,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => InfluencersPageScreen(
+                influencer: influencer,
               ),
-            )),
+            ),
+          );
+        },
         title: Text(
           influencer.name,
           style: AppFonts.mediumFontPrefsBlack,

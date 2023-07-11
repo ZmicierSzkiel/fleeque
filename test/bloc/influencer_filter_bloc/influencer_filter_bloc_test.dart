@@ -36,7 +36,9 @@ class MockObserveUseCase extends Mock implements ObserveUseCase {
           followers: 0,
           posts: 0,
           country: 'country',
-          price: 0,
+          firstOptionPrice: 0,
+          secondOptionPrice: 0,
+          extraOptionPrice: 0,
           time: Timestamp.fromDate(DateTime.utc(2021)),
         )
       ],
@@ -94,7 +96,9 @@ void main() {
                 followers: 0,
                 posts: 0,
                 country: 'country',
-                price: 0,
+                firstOptionPrice: 0,
+                secondOptionPrice: 0,
+                extraOptionPrice: 0,
                 time: Timestamp.fromDate(DateTime.utc(2021)),
               )
             ],
@@ -142,7 +146,9 @@ void main() {
                 followers: 0,
                 posts: 0,
                 country: 'country',
-                price: 0,
+                firstOptionPrice: 0,
+                secondOptionPrice: 0,
+                extraOptionPrice: 0,
                 time: Timestamp.fromDate(DateTime.utc(2021)),
               )
             ],

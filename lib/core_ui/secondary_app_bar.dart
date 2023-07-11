@@ -1,3 +1,4 @@
+import 'package:fleeque/core_ui/constants.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -12,7 +13,8 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leadingWidth: 100,
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.textPrimaryColor,
+      elevation: 0,
       leading: ElevatedButton.icon(
         onPressed: () {
           Navigator.pop(context);

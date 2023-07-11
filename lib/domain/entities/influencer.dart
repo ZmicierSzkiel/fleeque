@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
@@ -8,7 +9,9 @@ class Influencer extends Equatable {
     required this.followers,
     required this.posts,
     required this.country,
-    required this.price,
+    required this.firstOptionPrice,
+    required this.secondOptionPrice,
+    required this.extraOptionPrice,
     required this.time,
   });
 
@@ -17,7 +20,10 @@ class Influencer extends Equatable {
   final int followers;
   final int posts;
   final String country;
-  final int price;
+  final int firstOptionPrice;
+  final int secondOptionPrice;
+  final int extraOptionPrice;
+
   final Timestamp time;
 
   @override
@@ -27,7 +33,9 @@ class Influencer extends Equatable {
         followers,
         posts,
         country,
-        price,
+        firstOptionPrice,
+        secondOptionPrice,
+        extraOptionPrice,
         time,
       ];
 }

@@ -21,9 +21,8 @@ class InfluencersList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: length,
       itemBuilder: (context, index) {
-        final itemIndex = index % influencers.length;
         return InfluencerListTile(
-          influencer: influencers[itemIndex],
+          influencer: influencers[index],
         );
       },
     );

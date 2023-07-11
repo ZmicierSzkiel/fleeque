@@ -85,7 +85,9 @@ class InfluencersForm extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 15.0),
+                      horizontal: 20.0,
+                      vertical: 15.0,
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
