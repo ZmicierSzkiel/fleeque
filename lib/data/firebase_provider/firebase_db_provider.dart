@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:fleeque/data/models/influencer_model.dart';
+import 'package:fleeque/data/models/order_details_model.dart';
+
 import 'package:fleeque/domain/entities/filtered_influencer.dart';
+import 'package:fleeque/domain/entities/order_details.dart';
 
 class FirebaseDbProvider {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -98,5 +101,25 @@ class FirebaseDbProvider {
         return InfluencerMapper.fromJson(doc.data());
       },
     ).toList();
+  }
+
+  Future<void> sendOrderToDB(
+    OrderDetails params,
+  ) async {
+    await _db
+        .collection('pre_orders')
+        .withConverter(
+          fromFirestore: (snapshot, _) => OrderDetailsMapper.fromJson(
+            snapshot.data()!,
+          ),
+          toFirestore: (model, _) => model.toJson(),
+        )
+        .add(
+          OrderDetailsMapper(
+            influencerName: params.influencerName,
+            orderPrice: params.orderPrice,
+            orderDescription: params.orderDescription,
+          ),
+        );
   }
 }

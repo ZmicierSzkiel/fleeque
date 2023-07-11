@@ -1,11 +1,13 @@
-import 'package:fleeque/domain/entities/influencer.dart';
-import 'package:fleeque/presentation/main_screen/screens/influencers_page/widgets/influencers_page_option_tile.dart';
-import 'package:fleeque/presentation/main_screen/screens/payment/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
+
+import 'package:fleeque/domain/entities/influencer.dart';
+
 import 'package:fleeque/presentation/main_screen/screens/influencers_page/bloc/influencers_page_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers_page/widgets/influencers_page_option_tile.dart';
+import 'package:fleeque/presentation/main_screen/screens/payment/payment_screen.dart';
 
 class InfluencersPageForm extends StatelessWidget {
   final Influencer influencer;
@@ -82,15 +84,15 @@ class InfluencersPageForm extends StatelessWidget {
                         ),
                         influencer.followers > 1000
                             ? Text(
-                                '${(influencer.followers * 0.001).toString()}M followers',
+                                '${(influencer.followers * 0.001)}M followers',
                                 style: AppFonts.mediumFontPrefsBlack,
                               )
                             : Text(
-                                '${influencer.followers.toString()}K followers',
+                                '${influencer.followers}K followers',
                                 style: AppFonts.mediumFontPrefsBlack,
                               ),
                         Text(
-                          '${influencer.posts.toString()} posts',
+                          '${influencer.posts} posts',
                           style: AppFonts.mediumFontPrefsBlack,
                         ),
                       ],
@@ -108,7 +110,7 @@ class InfluencersPageForm extends StatelessWidget {
                         influencer: influencer,
                         price: influencer.firstOptionPrice,
                         description:
-                            'Stanton Hakala will upload a video on her story tagging your friend.',
+                            '${influencer.name} will upload a video on her story tagging your friend.',
                         option: 'Option 1',
                         selectedOption: state.selectedOption,
                       ),
@@ -116,7 +118,7 @@ class InfluencersPageForm extends StatelessWidget {
                         influencer: influencer,
                         price: influencer.secondOptionPrice,
                         description:
-                            'Stanton Hakala will send a video to your friends instagram inbox.',
+                            '${influencer.name} will send a video to your friends Instagram inbox.',
                         option: 'Option 2',
                         selectedOption: state.selectedOption,
                       ),
@@ -124,7 +126,7 @@ class InfluencersPageForm extends StatelessWidget {
                         influencer: influencer,
                         price: influencer.extraOptionPrice,
                         description:
-                            'Stanton Hakala will recieve the videos via email.',
+                            '${influencer.name} will send the videos via email.',
                         option: 'Extra',
                         selectedOption: state.selectedOption,
                       ),
@@ -151,12 +153,17 @@ class InfluencersPageForm extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PaymentScreen(),
-                            ),
-                          );
+                          if (state.orderPrice != 0) {
+                            BlocProvider.of<InfluencersPageBloc>(context).add(
+                              SubmitOrderEvent(),
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const PaymentScreen(),
+                              ),
+                            );
+                          }
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -172,9 +179,12 @@ class InfluencersPageForm extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            const Text('Total'),
+                            const Text(
+                              'Total',
+                              style: AppFonts.mediumFontPrefsBlack,
+                            ),
                             Text(
-                              '\$${influencer.firstOptionPrice.toString()}',
+                              '\$${state.orderPrice}',
                               style: AppFonts.xLargeFontPrefsBlack,
                             ),
                           ],

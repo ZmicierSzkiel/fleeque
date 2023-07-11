@@ -12,7 +12,9 @@ class FilterInfluencersListUseCase
   });
 
   @override
-  Future<void> execute(FilteredInfluencer params) {
+  Future<void> execute(
+    FilteredInfluencer params,
+  ) {
     return repository.filterInfluencersList(params);
   }
 }

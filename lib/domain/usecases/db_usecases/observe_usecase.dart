@@ -12,7 +12,9 @@ class ObserveUseCase implements StreamUseCase<List<Influencer>, NoParams> {
   });
 
   @override
-  Stream<List<Influencer>> execute(NoParams params) {
+  Stream<List<Influencer>> execute(
+    NoParams params,
+  ) {
     return repository.observe();
   }
 }

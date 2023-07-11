@@ -1,9 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fleeque/core_ui/constants.dart';
+
 import 'package:fleeque/domain/entities/influencer.dart';
+
 import 'package:fleeque/presentation/main_screen/screens/influencers_page/bloc/influencers_page_bloc.dart';
 
 class InfluencerPageOptionTile extends StatelessWidget {
@@ -29,6 +30,9 @@ class InfluencerPageOptionTile extends StatelessWidget {
         BlocProvider.of<InfluencersPageBloc>(context).add(
           OptionTappedEvent(
             option: option,
+            price: price,
+            description: description,
+            influencerName: influencer.name,
           ),
         );
       },
@@ -37,7 +41,7 @@ class InfluencerPageOptionTile extends StatelessWidget {
           vertical: 5.0,
         ),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
             color: option == selectedOption
                 ? AppColors.textPrimaryColor

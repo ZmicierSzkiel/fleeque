@@ -4,6 +4,7 @@ import 'package:fleeque/data/firebase_provider/firebase_db_provider.dart';
 import 'package:fleeque/data/models/influencer_model.dart';
 
 import 'package:fleeque/domain/entities/filtered_influencer.dart';
+import 'package:fleeque/domain/entities/order_details.dart';
 import 'package:fleeque/domain/repositories/db_repository.dart';
 
 class DbRepositoryImpl implements DbRepository {
@@ -34,6 +35,13 @@ class DbRepositoryImpl implements DbRepository {
     final List<InfluencerMapper> filteredList =
         await _dbProvider.getFilteredInfluencersFromDB(params);
     _streamController.add(filteredList);
+  }
+
+  @override
+  Future<void> sendOrder(
+    OrderDetails params,
+  ) async {
+    await _dbProvider.sendOrderToDB(params);
   }
 
   void dispose() {
