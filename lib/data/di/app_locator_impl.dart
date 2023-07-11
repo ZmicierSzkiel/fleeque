@@ -18,6 +18,7 @@ import 'package:fleeque/domain/usecases/auth_usecases/register_user_usecase.dart
 import 'package:fleeque/domain/usecases/auth_usecases/sign_out_user_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
+import 'package:fleeque/domain/usecases/db_usecases/get_order_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/observe_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/send_order_usecase.dart';
 import 'package:fleeque/domain/usecases/user_usecases/get_user_usecase.dart';
@@ -110,6 +111,12 @@ Future<void> setupLocator() async {
 
   getIt.registerLazySingleton<SendOrderUseCase>(
     () => SendOrderUseCase(
+      repository: getIt.get<DbRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<GetOrderUseCase>(
+    () => GetOrderUseCase(
       repository: getIt.get<DbRepository>(),
     ),
   );

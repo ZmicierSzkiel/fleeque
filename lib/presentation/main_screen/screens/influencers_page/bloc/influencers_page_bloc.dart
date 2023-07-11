@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fleeque/core/use_case.dart';
 
@@ -55,7 +56,9 @@ class InfluencersPageBloc
     GetInfluencersEvent event,
     Emitter<InfluencersPageState> emit,
   ) async {
-    await _getInfluencersListUseCase.execute(NoParams());
+    await _getInfluencersListUseCase.execute(
+      NoParams(),
+    );
   }
 
   Future<void> _handleRenderInfluencersEvent(
@@ -87,14 +90,22 @@ class InfluencersPageBloc
     SubmitOrderEvent event,
     Emitter<InfluencersPageState> emit,
   ) async {
+    // TODO OrderDetailsRequest в FB
+    // final OrderDetailsRequest request =
+    //  OrderDetailsRequest(
+
     await _sendOrderUseCase.execute(
       OrderDetails(
         influencerName: state.influencerName,
         orderDescription: state.orderDescription,
         orderPrice: state.orderPrice,
+        timestamp: Timestamp.now(),
         userId: '',
       ),
     );
+    // await _sendOrderUseCase.execute(
+    //   request
+    // );
   }
 
   @override

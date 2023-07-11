@@ -110,7 +110,7 @@ class InfluencersPageForm extends StatelessWidget {
                         influencer: influencer,
                         price: influencer.firstOptionPrice,
                         description:
-                            '${influencer.name} will upload a video on her story tagging your friend.',
+                            '${influencer.name} will upload a video on her story tagging your friend',
                         option: 'Option 1',
                         selectedOption: state.selectedOption,
                       ),
@@ -118,7 +118,7 @@ class InfluencersPageForm extends StatelessWidget {
                         influencer: influencer,
                         price: influencer.secondOptionPrice,
                         description:
-                            '${influencer.name} will send a video to your friends Instagram inbox.',
+                            '${influencer.name} will send a video to your friends Instagram inbox',
                         option: 'Option 2',
                         selectedOption: state.selectedOption,
                       ),
@@ -126,7 +126,7 @@ class InfluencersPageForm extends StatelessWidget {
                         influencer: influencer,
                         price: influencer.extraOptionPrice,
                         description:
-                            '${influencer.name} will send the videos via email.',
+                            '${influencer.name} will send the videos via email',
                         option: 'Extra',
                         selectedOption: state.selectedOption,
                       ),

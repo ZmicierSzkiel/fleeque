@@ -46,8 +46,7 @@ class DbRepositoryImpl implements DbRepository {
 
   @override
   Future<List<OrderDetails>> getOrder() async {
-    final List<OrderDetails> orderDetails = await _dbProvider.getOrderFromDB();
-    return orderDetails;
+    return await _dbProvider.getOrderFromDB();
   }
 
   void dispose() {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fleeque/domain/entities/order_details.dart';
 
 class OrderDetailsMapper extends OrderDetails {
@@ -6,11 +7,13 @@ class OrderDetailsMapper extends OrderDetails {
     required int orderPrice,
     required String orderDescription,
     required String userId,
+    required Timestamp timestamp,
   }) : super(
           influencerName: influencerName,
           orderPrice: orderPrice,
           orderDescription: orderDescription,
           userId: userId,
+          timestamp: timestamp,
         );
 
   static OrderDetailsMapper fromJson(Map<String, dynamic> json) {
@@ -19,6 +22,7 @@ class OrderDetailsMapper extends OrderDetails {
       orderPrice: json['order_price'],
       orderDescription: json['order_description'],
       userId: json['user_id'],
+      timestamp: json['timestamp'],
     );
   }
 
@@ -28,6 +32,7 @@ class OrderDetailsMapper extends OrderDetails {
       'order_price': orderPrice,
       'order_description': orderDescription,
       'user_id': userId,
+      'timestamp': timestamp,
     };
   }
 }

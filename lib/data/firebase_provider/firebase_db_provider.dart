@@ -11,6 +11,8 @@ import 'package:fleeque/domain/entities/order_details.dart';
 
 class FirebaseDbProvider {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
+  static final CollectionReference<Map<String, dynamic>> orderSnapshot =
+      _db.collection('orders');
 
   Future<List<InfluencerMapper>> getInfluencersListFromDB() async {
     final snapshot = await _db.collection('products').get();
@@ -108,8 +110,7 @@ class FirebaseDbProvider {
     OrderDetails params,
   ) async {
     final String userId = FirebaseAuth.instance.currentUser!.uid;
-    await _db
-        .collection('orders')
+    await orderSnapshot
         .withConverter(
           fromFirestore: (snapshot, _) => OrderDetailsMapper.fromJson(
             snapshot.data()!,
@@ -122,12 +123,17 @@ class FirebaseDbProvider {
             orderPrice: params.orderPrice,
             orderDescription: params.orderDescription,
             userId: userId,
+            timestamp: params.timestamp,
           ),
         );
   }
 
   Future<List<OrderDetailsMapper>> getOrderFromDB() async {
-    final snapshot = await _db.collection('orders').get();
+    final snapshot = await _db
+        .collection('orders')
+        .orderBy('timestamp', descending: true)
+        .limit(1)
+        .get();
     return snapshot.docs.map(
       (QueryDocumentSnapshot<Map<String, dynamic>> doc) {
         return OrderDetailsMapper.fromJson(
