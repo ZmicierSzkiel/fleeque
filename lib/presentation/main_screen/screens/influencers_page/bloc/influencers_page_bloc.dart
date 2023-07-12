@@ -90,10 +90,6 @@ class InfluencersPageBloc
     SubmitOrderEvent event,
     Emitter<InfluencersPageState> emit,
   ) async {
-    // TODO OrderDetailsRequest в FB
-    // final OrderDetailsRequest request =
-    //  OrderDetailsRequest(
-
     await _sendOrderUseCase.execute(
       OrderDetails(
         influencerName: state.influencerName,
@@ -103,9 +99,6 @@ class InfluencersPageBloc
         userId: '',
       ),
     );
-    // await _sendOrderUseCase.execute(
-    //   request
-    // );
   }
 
   @override

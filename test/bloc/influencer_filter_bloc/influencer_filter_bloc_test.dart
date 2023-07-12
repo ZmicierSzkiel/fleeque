@@ -4,11 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:fleeque/core/use_case.dart';
+
 import 'package:fleeque/domain/entities/filtered_influencer.dart';
 import 'package:fleeque/domain/entities/influencer.dart';
 import 'package:fleeque/domain/usecases/db_usecases/filter_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/get_influencers_list_usecase.dart';
 import 'package:fleeque/domain/usecases/db_usecases/observe_usecase.dart';
+
 import 'package:fleeque/presentation/main_screen/screens/influencers_filter/bloc/influencers_filter_bloc.dart';
 
 class MockFilterInfluencersListUseCase extends Mock
