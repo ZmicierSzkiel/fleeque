@@ -1,14 +1,15 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:fleeque/core/app_locator.dart';
-import 'package:fleeque/domain/usecases/auth_usecases/login_user_usecase.dart';
-import 'package:fleeque/presentation/auth/login/login_screen.dart';
-import 'package:fleeque/presentation/main_screen/screens/user_settings/bloc/user_settings_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fleeque/presentation/main_screen/screens/user_settings/user_settings_form.dart';
 import 'package:mockito/mockito.dart';
+
+import 'package:fleeque/core/app_locator.dart';
+import 'package:fleeque/domain/usecases/auth_usecases/login_user_usecase.dart';
+
+import 'package:fleeque/presentation/auth/login/login_screen.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/bloc/user_settings_bloc.dart';
+import 'package:fleeque/presentation/main_screen/screens/user_settings/user_settings_form.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 

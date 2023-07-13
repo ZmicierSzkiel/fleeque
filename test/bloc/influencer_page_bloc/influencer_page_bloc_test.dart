@@ -113,7 +113,7 @@ void main() {
         ],
       );
 
-      blocTest(
+      blocTest<InfluencersPageBloc, InfluencersPageState>(
         'Emits correct state for OptionTappedEvent',
         build: () => influencersPageBloc,
         act: (bloc) => bloc.add(
@@ -147,12 +147,19 @@ void main() {
         ],
       );
 
-      blocTest(
+      blocTest<InfluencersPageBloc, InfluencersPageState>(
         'Emits correct state for SubmitOrderEvent',
         build: () => influencersPageBloc,
         act: (bloc) => bloc.add(
           SubmitOrderEvent(),
         ),
+        expect: () => [],
+      );
+
+      blocTest<InfluencersPageBloc, InfluencersPageState>(
+        'Emits correct state and cancels/disposes the stream when closed',
+        build: () => influencersPageBloc,
+        act: (bloc) => bloc.close(),
         expect: () => [],
       );
     },

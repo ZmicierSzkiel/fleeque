@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:fleeque/presentation/main_screen/screens/influencers_filter/widgets/influencer_dropdown_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,6 +7,7 @@ import 'package:network_image_mock/network_image_mock.dart';
 
 import 'package:fleeque/presentation/main_screen/screens/influencers_filter/bloc/influencers_filter_bloc.dart';
 import 'package:fleeque/presentation/main_screen/screens/influencers_filter/influencers_filter_form.dart';
+import 'package:fleeque/presentation/main_screen/screens/influencers_filter/widgets/influencer_dropdown_button.dart';
 
 class MockInfluencersFilterBloc
     extends MockBloc<InfluencersFilterEvent, InfluencersFilterState>
@@ -75,9 +75,6 @@ void main() {
             find.text('Back'),
           );
           await tester.pumpAndSettle();
-          // verify(
-          //   mockObserver.didPop(any, any),
-          // );
         },
       );
     },

@@ -94,7 +94,7 @@ class OrderDetailsWidget extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => const MainScreen(),
                       ),
-                      (route) => false,
+                      (Route<dynamic> route) => false,
                     );
                   },
                   child: const Text(
